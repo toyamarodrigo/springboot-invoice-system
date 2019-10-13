@@ -23,7 +23,7 @@ public class Client implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private Long id;
 	
 	@NotEmpty
 	private String firstName;
@@ -45,8 +45,8 @@ public class Client implements Serializable {
 	
 	public static long getSerialVersionuid() { return serialVersionUID; }
 
-	public long getId() { return id; }
-	public void setId(long id) { this.id = id; }
+	public Long getId() { return id; }
+	public void setId(Long id) { this.id = id; }
 	public String getFirstName() { return firstName; }
 	public void setFirstName(String firstName) { this.firstName = firstName; }
 	public String getLastName() { return lastName; }

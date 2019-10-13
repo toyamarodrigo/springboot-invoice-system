@@ -52,7 +52,7 @@ public class ClientController {
 	}
 	
 	/* ----- Edit Client ----- */
-	@GetMapping(value = "/form")
+	@GetMapping(value = "/form/{id}")
 	public String update(@PathVariable(value = "id") Long id, RedirectAttributes flash, Model model) {
 		
 		Client client = null;
@@ -92,6 +92,7 @@ public class ClientController {
 	}
 	
 	/* ----- Delete Client ----- */
+	@GetMapping(value = "/delete/{id}")
 	public String delete(@PathVariable(value = "id") Long id, RedirectAttributes flash) {
 		if(id > 0) {
 			clientService.delete(id);

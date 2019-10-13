@@ -87,7 +87,7 @@ public class ClientController {
 		
 		clientService.save(client);
 		status.setComplete();
-		flash.addFlashAttribute("sucess", flashMsg);
+		flash.addFlashAttribute("success", flashMsg);
 		return "redirect:/list";
 	}
 	
@@ -97,7 +97,7 @@ public class ClientController {
 		if(id > 0) {
 			clientService.delete(id);
 		}
-		flash.addFlashAttribute("sucess", "Client deleted");
+		flash.addFlashAttribute("success", "Client deleted");
 		return "redirect:/list";
 	}
 	

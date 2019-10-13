@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.springframework.data.domain.Page;
 
+import com.rt.springboot.app.util.paginator.PageItem;
+
 public class PageRender<T> {
 
 	private String url;
@@ -12,7 +14,7 @@ public class PageRender<T> {
 	
 	private int totalPages;
 	
-	private int numElementsByPages;
+	private int numElementsByPage;
 	
 	private int actualPage;
 	
@@ -23,30 +25,30 @@ public class PageRender<T> {
 		this.page = page;
 		this.pages = new ArrayList<PageItem>();
 		
-		numElementsByPages = page.getSize();
+		numElementsByPage = page.getSize();
 		totalPages = page.getTotalPages();
 		actualPage = page.getNumber() + 1;
 		
 		int from, upto;
-		if(totalPages <= numElementsByPages) {
-			from = 1;
-			upto = totalPages;
-		} else {
-			if(actualPage <= numElementsByPages/2) {
-				from = 1;
-				upto = numElementsByPages;
-			} else if (actualPage >= totalPages - numElementsByPages/2) {
-				from = totalPages - numElementsByPages + 1;
-				upto = numElementsByPages;
-			} else {
-				from = actualPage - numElementsByPages/2;
-				upto = numElementsByPages;
-			}
-		}
-		for(int i=0 ; i<upto ; i++) {
-			pages.add(new PageItem(from + i, actualPage == from + 1));
-		}
-	}
+	    if(totalPages <= numElementsByPage) {
+	        from = 1;
+	        upto = totalPages;
+	      } else {
+	        if(actualPage <= numElementsByPage/2) {
+	          from = 1;
+	          upto = numElementsByPage;
+	        } else if (actualPage >= totalPages - numElementsByPage/2) {
+	          from = totalPages - numElementsByPage + 1;
+	          upto = numElementsByPage;
+	        } else {
+	          from = actualPage - numElementsByPage/2;
+	          upto = numElementsByPage;
+	        }
+	      }
+	      for(int i=0 ; i<upto ; i++) {
+	        pages.add(new PageItem(from + i, actualPage == from + i));
+	      }
+	    }
 
 	public String getUrl() { return url; }
 
@@ -63,6 +65,5 @@ public class PageRender<T> {
 	public boolean isHasNext() { return page.hasNext(); }
 	
 	public boolean isHasPrevious() { return page.hasPrevious(); }
-	
 	
 }

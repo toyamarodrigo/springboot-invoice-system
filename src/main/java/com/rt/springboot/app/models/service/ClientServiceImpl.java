@@ -16,31 +16,36 @@ public class ClientServiceImpl implements IClientService {
 
 	@Autowired
 	private IClientDao clientDao;
-	
+
+	/*----- Method List -----*/
 	@Override
 	@Transactional(readOnly = true)
 	public List<Client> findAll() {
 		return (List<Client>) clientDao.findAll();
 	}
 
+	/*----- Paginator -----*/
 	@Override
 	@Transactional(readOnly = true)
 	public Page<Client> findAll(Pageable pageable) {
 		return clientDao.findAll(pageable);
 	}
 
+	/*----- Method Find By ID -----*/
 	@Override
 	@Transactional(readOnly = true)
 	public Client findOne(Long id) {
 		return clientDao.findById(id).orElse(null);
 	}
 
+		/*----- Method Save -----*/
 	@Override
 	@Transactional
 	public void save(Client client) {
 		clientDao.save(client);
 	}
 
+		/*----- Method Delete -----*/
 	@Override
 	@Transactional
 	public void delete(Long id) {

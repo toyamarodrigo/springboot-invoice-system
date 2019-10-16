@@ -47,6 +47,8 @@ public class Client implements Serializable {
 	
 	public static long getSerialVersionuid() { return serialVersionUID; }
 
+
+	/*----- Getters & Setters -----*/
 	public Long getId() { return id; }
 	public void setId(Long id) { this.id = id; }
 	public String getFirstName() { return firstName; }

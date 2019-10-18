@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layout/layout :: head"></head>
+
+<body>
+
+  <header th:replace="layout/layout :: header"></header>
+
+  <div class="container py-4">
+    <div class="card bg-light">
+      <div class="card-header" th:text="${title}"></div>
+      <div class="card-body">
+        <h4 class="card-title">
+          <a th:href="@{/form}" class="btn btn-primary btn-xs">create
+            client</a>
+        </h4>
+        <table class="table table-striped table-bordered">
+          <thead class="thead-inverse">
+            <tr>
+              <th>id</th>
+              <th>first name</th>
+              <th>last name</th>
+              <th>email</th>
+              <th>date</th>
+              <th>edit</th>
+              <th>delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr th:each="client: ${clients}">
+              <td th:text="${client.id}"></td>
+              <td th:text="${client.firstName}"></td>
+              <td th:text="${client.lastName}"></td>
+              <td th:text="${client.email}"></td>
+              <td th:text="${client.createAt}"></td>
+              <td><a class="btn btn-primary btn-xs" th:href="@{/form/} + ${client.id}" th:text="'edit'"></a></td>
+              <td><a class="btn btn-danger btn-xs" th:href="@{/delete/} + ${client.id}" th:text="'delete'"
+                  onclick="return confirm('Estas seguro que quiere eliminar?');"></a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <nav th:replace="paginator-nav :: paginator"></nav>
+
+      </div>
+    </div>
+  </div>
+
+  <footer th:replace="layout/layout :: footer"></footer>
+
+</body>
+
+</html>

@@ -1,16 +1,17 @@
 package com.rt.springboot.app.controllers;
 
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.net.MalformedURLException;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -25,6 +26,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.rt.springboot.app.models.entity.Client;
 import com.rt.springboot.app.models.service.IClientService;
+import com.rt.springboot.app.models.service.IUploadFileService;
 import com.rt.springboot.app.util.paginator.PageRender;
 
 @Controller
@@ -33,21 +35,42 @@ public class ClientController {
 
 	@Autowired
 	private IClientService clientService;
-	
-	
+
+	@Autowired
+	private IUploadFileService uploadFileService;
+
+	/* ----- View Photo ----- */
+	// .+ = retorna el nombre del archico pero sin formato
+	@GetMapping(value = "/uploads/{filename:.+}")
+	public ResponseEntity<Resource> viewPhoto(@PathVariable String filename) {
+
+		Resource resource = null;
+
+		try {
+			resource = uploadFileService.load(filename);
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return ResponseEntity.ok()
+				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + resource.getFilename() + "\"")
+				.body(resource);
+	}
+
 	/* ----- View Clients Details ----- */
 	@GetMapping(value = "/view/{id}")
-	public String view(@PathVariable(value = "id") Long id, Model model, RedirectAttributes flash)  {
-		
+	public String view(@PathVariable(value = "id") Long id, Model model, RedirectAttributes flash) {
+
 		Client client = clientService.findOne(id);
-		if(client == null) {
+		if (client == null) {
 			flash.addFlashAttribute("error", "Client does not exist in DB");
 			return "redirect:/list";
 		}
-		
+
 		model.addAttribute("client", client);
 		model.addAttribute("title", "Client Details: " + client.getFirstName());
-		
+
 		return "view";
 	}
 
@@ -99,69 +122,61 @@ public class ClientController {
 
 	/* ----- Save Client ----- */
 	@PostMapping(value = "/form")
-	public String save(@Valid Client client, BindingResult result, Model model, @RequestParam("file") MultipartFile photo,
-			RedirectAttributes flash, SessionStatus status) {
+	public String save(@Valid Client client, BindingResult result, Model model,
+			@RequestParam("file") MultipartFile photo, RedirectAttributes flash, SessionStatus status) {
 
 		if (result.hasErrors()) {
 			model.addAttribute("title", "Client Form");
 			return "form";
 		}
 
-		/* ----- Upload Photo ----- */		
+		/* ----- Upload Photo ----- */
 		if (!photo.isEmpty()) {
-			
-			String rootPath = "C://Temp//uploads";
-			
-			try {
-				byte[] bytes = photo.getBytes();
-				Path rootComplete = Paths.get(rootPath + "//" + photo.getOriginalFilename());
-				Files.write(rootComplete, bytes);
-				flash.addFlashAttribute("info", "Upload completed '" + photo.getOriginalFilename() + "'");
 
-				client.setPhoto(photo.getOriginalFilename());
-				
+			if (client.getId() != null && client.getId() > 0 && client.getPhoto() != null
+					&& client.getPhoto().length() > 0) {
+
+				uploadFileService.delete(client.getPhoto());
+
+			}
+
+			String uniqueFilename = null;
+
+			try {
+				uniqueFilename = uploadFileService.copy(photo);
 			} catch (IOException e) {
+				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+
+			flash.addFlashAttribute("info", "Upload completed '" + uniqueFilename + "'");
+
+			client.setPhoto(uniqueFilename);
+
 		}
-		
+
 		String flashMsg = (client.getId() != null) ? "Client updated" : "Client created";
-		
+
 		clientService.save(client);
 		status.setComplete();
 		flash.addFlashAttribute("success", flashMsg);
 		return "redirect:/list";
 	}
-	
+
 	/* ----- Delete Client ----- */
 	@GetMapping(value = "/delete/{id}")
 	public String delete(@PathVariable(value = "id") Long id, RedirectAttributes flash) {
-		if(id > 0) {
+
+		if (id > 0) {
+			Client client = clientService.findOne(id);
 			clientService.delete(id);
+			
+			flash.addFlashAttribute("success", "Client Deleted");
+			
+				if (uploadFileService.delete(client.getPhoto())) {
+					flash.addFlashAttribute("info", "Photo " + client.getPhoto() + " Delete success");
+				}
+			}
+		return"redirect:/list";
 		}
-		flash.addFlashAttribute("success", "Client deleted");
-		return "redirect:/list";
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }

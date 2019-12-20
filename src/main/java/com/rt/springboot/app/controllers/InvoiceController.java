@@ -15,15 +15,15 @@ import com.rt.springboot.app.models.entity.Invoice;
 import com.rt.springboot.app.models.service.IClientService;
 
 @Controller
-@RequestMapping("/factura")
+@RequestMapping("/invoice")
 @SessionAttributes("invoice")
 public class InvoiceController {
 	
 	@Autowired
 	private IClientService clientService;
 	
-	// /factura/form/{client.id}
-	@GetMapping("/form/{client.id}")
+	// /invoice/form/{client.id}
+	@GetMapping("/form/{clientId}")
 	public String create(@PathVariable(value = "clientId") Long clientId, Map<String, Object> model, RedirectAttributes flash) {
 		
 		Client client = clientService.findOne(clientId);
@@ -39,7 +39,7 @@ public class InvoiceController {
 		model.put("title", "Create invoice");
 		
 		
-		return "factura/form";
+		return "invoice/form";
 	}
 	
 	

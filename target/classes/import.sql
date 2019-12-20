@@ -41,3 +41,13 @@ INSERT INTO products (name, price, create_at) VALUES('HP F2280 MultiF', 69990, N
 INSERT INTO products (name, price, create_at) VALUES('Bike 26 BMW', 69990, NOW());
 INSERT INTO products (name, price, create_at) VALUES('Keyboard Razer CLGv', 299990, NOW());
 INSERT INTO products (name, price, create_at) VALUES('Mouse Razer Deathadder', 299650, NOW());
+
+/* Invoices */
+INSERT INTO invoices(description, observation, client_id, create_at) VALUES('Invoice office team', null, 1, NOW());
+INSERT INTO items_invoices(amount, invoice_id, product_id) VALUES(1, 1, 1); 
+INSERT INTO items_invoices(amount, invoice_id, product_id) VALUES(2, 1, 4); 
+INSERT INTO items_invoices(amount, invoice_id, product_id) VALUES(1, 1, 5); 
+INSERT INTO items_invoices(amount, invoice_id, product_id) VALUES(1, 1, 7); 
+
+INSERT INTO invoices(description, observation, client_id, create_at) VALUES('Bike Invoice', 'IMPORTANT STUFF', 1, NOW());
+INSERT INTO items_invoices(amount, invoice_id, product_id) VALUES(3, 2, 6); 

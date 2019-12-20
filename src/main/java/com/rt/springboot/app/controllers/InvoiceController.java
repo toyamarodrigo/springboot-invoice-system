@@ -22,7 +22,7 @@ public class InvoiceController {
 	@Autowired
 	private IClientService clientService;
 	
-	// /invoice/form/{client.id}
+	// /invoice/form/{clientId}
 	@GetMapping("/form/{clientId}")
 	public String create(@PathVariable(value = "clientId") Long clientId, Map<String, Object> model, RedirectAttributes flash) {
 		

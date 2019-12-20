@@ -12,6 +12,11 @@
 			<div class="card-header" th:text="${title}"></div>
 			<div class="card-body">
 
+				<h4 class="card-title">
+					<a class="btn btn-success btn-xs"
+								th:href="@{'/invoice/form/' + ${client.id}}" th:text="'create invoice'"></a>
+				</h4>
+
 				<img th:if="${#strings.length(client.photo) > 0}"
 					class="imt-thumbnail rounded float-left" style="max-width: 25%;"
 					th:src="@{'/uploads/' + ${client.photo}}" th:alt="${client.photo}">

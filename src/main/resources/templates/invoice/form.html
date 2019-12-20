@@ -10,7 +10,11 @@
 		<div class="card bg-light">
 			<div class="card-header" th:text="#{title}"></div>
 			<div class="card-body">
-				<h4 class="card-title"></h4>
+				<h4 class="card-title">
+					<a class="btn btn-light btn-xs"
+						th:href="@{'/view/' + ${invoice.client.id}}"
+						th:text="'&laquo; back'"></a>
+				</h4>
 
 				<form action="@{/invoice/form/}" th:object="${invoice}"
 					method="post">

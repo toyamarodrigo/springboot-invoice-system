@@ -31,3 +31,13 @@ INSERT INTO clients (id, first_name, last_name, email, create_at, photo) VALUES 
 INSERT INTO clients (id, first_name, last_name, email, create_at, photo) VALUES (30,'Dolly','Ringrose','dringroset@drupal.org','2019-01-22', '');
 INSERT INTO clients (id, first_name, last_name, email, create_at, photo) VALUES (31,'Stanley','Hovert','shovert9@rediff.com','2019-05-04', '');
 INSERT INTO clients (id, first_name, last_name, email, create_at, photo) VALUES (32,'Janelle','Quilleash','jquilleasha@slashdot.org','2019-06-12', '');
+
+/* Populate table products */
+INSERT INTO products (name, price, create_at) VALUES('Panasonic LCD', 259990, NOW());
+INSERT INTO products (name, price, create_at) VALUES('Sony Camera DSC-W320B', 1234590, NOW());
+INSERT INTO products (name, price, create_at) VALUES('Apple iPod', 1499990, NOW());
+INSERT INTO products (name, price, create_at) VALUES('Sony Notebook Z110', 37990, NOW());
+INSERT INTO products (name, price, create_at) VALUES('HP F2280 MultiF', 69990, NOW());
+INSERT INTO products (name, price, create_at) VALUES('Bike 26 BMW', 69990, NOW());
+INSERT INTO products (name, price, create_at) VALUES('Keyboard Razer CLGv', 299990, NOW());
+INSERT INTO products (name, price, create_at) VALUES('Mouse Razer Deathadder', 299650, NOW());

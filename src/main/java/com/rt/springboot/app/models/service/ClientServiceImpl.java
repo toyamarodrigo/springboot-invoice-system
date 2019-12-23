@@ -9,13 +9,18 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.rt.springboot.app.models.dao.IClientDao;
+import com.rt.springboot.app.models.dao.IProductDao;
 import com.rt.springboot.app.models.entity.Client;
+import com.rt.springboot.app.models.entity.Product;
 
 @Service
 public class ClientServiceImpl implements IClientService {
 
 	@Autowired
 	private IClientDao clientDao;
+	
+	@Autowired
+	private IProductDao productDao;
 
 	/*----- Method List -----*/
 	@Override
@@ -50,6 +55,13 @@ public class ClientServiceImpl implements IClientService {
 	@Transactional
 	public void delete(Long id) {
 		clientDao.deleteById(id);
+	}
+	
+	
+		/*----- Method Find by Name (Product) -----*/
+	@Override
+	public List<Product> findByName(String term) {
+		return productDao.findByName(term);
 	}
 
 }

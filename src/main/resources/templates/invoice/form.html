@@ -29,26 +29,44 @@
 					</div>
 
 					<div class="form-group row">
-						<label for="description" class="col-sm-2 col-form-label" th:text="'Description'"></label>
+						<label for="description" class="col-sm-2 col-form-label"
+							th:text="'Description'"></label>
 						<div class="col-sm-6">
 							<input type="text" th:field="*{description}" class="form-control" />
 						</div>
 					</div>
 
 					<div class="form-group row">
-						<label for="observation" class="col-sm-2 col-form-label" th:text="'Observation'"></label>
+						<label for="observation" class="col-sm-2 col-form-label"
+							th:text="'Observation'"></label>
 						<div class="col-sm-6">
 							<textarea th:field="*{observation}" class="form-control"></textarea>
 						</div>
 					</div>
 
 					<div class="form-group row">
-						<label for="search_product" class="col-sm-2 col-form-label" th:text="'Search Product'"></label>
+						<label for="search_product" class="col-sm-2 col-form-label"
+							th:text="'Search Product'"></label>
 						<div class="col-sm-6">
-							<input type="text" name="search_product" id="search_product" class="form-control" />
+							<input type="text" name="search_product" id="search_product"
+								class="form-control" />
 						</div>
 					</div>
 
+					<table th:replace="invoice/template-items :: itemsInvoice"></table>
+
+					<table id="loadItemProducts"
+						class="table table-sm table-striped table-hover">
+						<thead>
+							<tr>
+								<th>Name</th>
+								<th>Price</th>
+								<th>Amount</th>
+							</tr>
+						</thead>
+						<tbody>
+						</tbody>
+					</table>
 
 					<div class="form-group row">
 						<div class="col-sm-6">
@@ -64,7 +82,7 @@
 	</div>
 
 	<footer th:replace="layout/layout :: footer"></footer>
-	<script th:replace="invoice/js/autocomplete-product :: javascript"></script>
+	<script th:replace="invoice/js/autocomplete-products :: javascript"></script>
 
 </body>
 

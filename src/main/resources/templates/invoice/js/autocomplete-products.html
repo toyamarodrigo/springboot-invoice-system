@@ -34,11 +34,19 @@
 					line = line.replace(/{PRICE}/g, ui.item.price);
 					
 					$("#loadItemProducts tbody").append(line);
+					itemsHelper.calculateImport(ui.item.value, ui.item.price, 1);
 					
 					return false;
 				}
 			});
 		});
+		
+		var itemsHelper = {
+				calculateImport: function(id, price, amount){
+					$("#total_import_" + id).html(parseInt(price) * parseInt(amount));
+				}
+		}
+		
 	</script>
 
 </body>

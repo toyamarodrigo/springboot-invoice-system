@@ -49,6 +49,7 @@
 		var itemsHelper = {
 				calculateImport: function(id, price, amount){
 					$("#total_import_" + id).html(parseInt(price) * parseInt(amount));
+					this.calculateFinalTotal();
 				},
 				
 				hasProduct: function(id){
@@ -67,6 +68,22 @@
 					var amount = $("#amount_" + id).val() ? parseInt($("#amount_" + id).val()) : 0;
 					$("#amount_" + id).val(++amount);
 					this.calculateImport(id, price, amount);
+				},
+				deleteInvoiceLine: function(id){
+					$("#row_" + id).remove();
+					this.calculateFinalTotal();
+				},
+				calculateFinalTotal: function(){
+					var total = 0;
+					
+					$('span[id^="total_import_"]').each(function(){
+						
+						total += parseInt($(this).html());
+					
+					});
+					
+					$('#final_total').html(total);
+					
 				}
 		}
 		

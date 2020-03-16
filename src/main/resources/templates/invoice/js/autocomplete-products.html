@@ -27,6 +27,11 @@
 				select : function(event, ui) {
 					//$("#search_product").val(ui.item.label);
 					
+					if(itemsHelper.hasProduct(ui.item.value)){
+						itemsHelper.incrementAmount(ui.item.value, ui.item.price);
+						return false;
+					}
+					
 					var line = $("#templateItemsInvoice").html();
 					
 					line = line.replace(/{ID}/g, ui.item.value);
@@ -44,6 +49,24 @@
 		var itemsHelper = {
 				calculateImport: function(id, price, amount){
 					$("#total_import_" + id).html(parseInt(price) * parseInt(amount));
+				},
+				
+				hasProduct: function(id){
+					
+					var result = false;
+					
+					$('input[name="item_id[]"]').each(function(){
+						if(parseInt(id) == parseInt($(this).val())) {
+							result = true;
+						}
+					});
+					
+					return result;
+				},
+				incrementAmount: function(id, price){
+					var amount = $("#amount_" + id).val() ? parseInt($("#amount_" + id).val()) : 0;
+					$("#amount_" + id).val(++amount);
+					this.calculateImport(id, price, amount);
 				}
 		}
 		

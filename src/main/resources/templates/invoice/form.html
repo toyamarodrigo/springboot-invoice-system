@@ -8,7 +8,7 @@
 
 	<div class="container py-4">
 		<div class="card bg-light">
-			<div class="card-header" th:text="#{title}"></div>
+			<div class="card-header" th:text="${title}"></div>
 			<div class="card-body">
 				<h4 class="card-title">
 					<a class="btn btn-light btn-xs"
@@ -16,7 +16,7 @@
 						th:text="'&laquo; back'"></a>
 				</h4>
 
-				<form action="@{/invoice/form/}" th:object="${invoice}"
+				<form th:action="@{/invoice/form/}" th:object="${invoice}"
 					method="post">
 
 					<div class="form-group row">
@@ -32,7 +32,8 @@
 						<label for="description" class="col-sm-2 col-form-label"
 							th:text="'Description'"></label>
 						<div class="col-sm-6">
-							<input type="text" th:field="*{description}" class="form-control" />
+							<input type="text" th:field="*{description}" class="form-control" th:errorclass= "'form-control is-invalid'"/>
+							<div class="invalid-feedback" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></div>
 						</div>
 					</div>
 

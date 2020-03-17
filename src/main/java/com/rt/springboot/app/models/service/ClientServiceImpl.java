@@ -9,8 +9,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.rt.springboot.app.models.dao.IClientDao;
+import com.rt.springboot.app.models.dao.IInvoiceDao;
 import com.rt.springboot.app.models.dao.IProductDao;
 import com.rt.springboot.app.models.entity.Client;
+import com.rt.springboot.app.models.entity.Invoice;
 import com.rt.springboot.app.models.entity.Product;
 
 @Service
@@ -18,9 +20,12 @@ public class ClientServiceImpl implements IClientService {
 
 	@Autowired
 	private IClientDao clientDao;
-	
+
 	@Autowired
 	private IProductDao productDao;
+
+	@Autowired
+	private IInvoiceDao invoiceDao;
 
 	/*----- Method List -----*/
 	@Override
@@ -43,25 +48,39 @@ public class ClientServiceImpl implements IClientService {
 		return clientDao.findById(id).orElse(null);
 	}
 
-		/*----- Method Save -----*/
+	/*----- Method Save -----*/
 	@Override
 	@Transactional
 	public void save(Client client) {
 		clientDao.save(client);
 	}
 
-		/*----- Method Delete -----*/
+	/*----- Method Delete -----*/
 	@Override
 	@Transactional
 	public void delete(Long id) {
 		clientDao.deleteById(id);
 	}
-	
-	
-		/*----- Method Find by Name (Product) -----*/
+
+	/*----- Method Find by Name (Product) -----*/
 	@Override
+	@Transactional(readOnly = true)
 	public List<Product> findByName(String term) {
 		return productDao.findByName(term);
+	}
+
+	/*----- Method Save (Invoice) -----*/
+	@Override
+	@Transactional
+	public void saveInvoice(Invoice invoice) {
+		invoiceDao.save(invoice);
+	}
+
+	/*----- Method Find by ID (Invoice) -----*/
+	@Override
+	@Transactional(readOnly = true)
+	public Product findProductById(Long id) {
+		return productDao.findById(id).orElse(null);
 	}
 
 }

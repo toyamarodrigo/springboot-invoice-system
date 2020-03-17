@@ -50,6 +50,16 @@ public class ItemInvoice implements Serializable {
 		this.amount = amount;
 	}
 
+
+	public Product getProduct() {
+		return product;
+	}
+
+
+	public void setProduct(Product product) {
+		this.product = product;
+	}
+
 	
 
 }

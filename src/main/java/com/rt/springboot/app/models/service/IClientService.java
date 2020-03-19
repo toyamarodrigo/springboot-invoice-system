@@ -26,4 +26,8 @@ public interface IClientService {
 	public void saveInvoice(Invoice invoice);
 	
 	public Product findProductById(Long id);
+	
+	public Invoice findInvoiceById(Long id);
+	
+	public void deleteInvoice(Long id);
 }

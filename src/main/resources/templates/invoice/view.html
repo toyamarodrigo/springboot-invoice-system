@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="layout/layout :: head"></head>
+
+<body>
+
+	<header th:replace="layout/layout :: header"></header>
+
+	<div class="container py-4">
+
+		<div class="card bg-light">
+
+			<div class="card-header" th:text="${title}"></div>
+			<div class="card-body"></div>
+
+
+			<h4 class="card-title">
+				<a th:href="@{'/view/' + ${invoice.client.id}}"
+					class="btn btn-light btn-xs">&laquo; back</a>
+			</h4>
+
+			<ul class="list-group p-4">
+				<li class="list-group-item list-group-item-primary"
+					th:text="'Client Details'"></li>
+				<li class="list-group-item" th:text="${invoice.client}"></li>
+				<li class="list-group-item" th:text="${invoice.client.email}"></li>
+			</ul>
+
+			<ul class="list-group p-4">
+				<li class="list-group-item list-group-item-success"
+					th:text="'Invoice Details'"></li>
+				<li class="list-group-item" th:text="'Page: '+${invoice.id}"></li>
+				<li class="list-group-item"
+					th:text="'Description: '+${invoice.description}"></li>
+				<li class="list-group-item" th:text="'Date: '+${invoice.createAt}"></li>
+			</ul>
+
+			<div class="alert alert-info my-4"
+				th:if="${#lists.isEmpty(invoice.items)}"
+				th:text="'No hay lineas para la factura' + ${invoice.description}"></div>
+
+			<table th:if="${not #lists.isEmpty(invoice.items)}"
+				class="table table-striped table-hover table-bordered my-3">
+				<thead>
+					<tr>
+						<th>Product</th>
+						<th>Price</th>
+						<th>Amount</th>
+						<th>Total</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="line: ${invoice.items}">
+						<td th:text="${line.product.name}"></td>
+						<td th:text="${line.product.price}"></td>
+						<td th:text="${line.amount}"></td>
+						<td th:text="${line.calculateImport()}"></td>
+					</tr>
+				</tbody>
+
+			</table>
+
+			<h5 class="text-right pr-4">
+				Final Total <span th:text="${invoice.total}"
+					class="badge badge-secondary"></span>
+			</h5>
+
+			<div class="card border-info m-4" style="max-width: 20rem;">
+				<div class="card-header">Observation</div>
+				<div class="card-body">
+					<p class="card-text" th:text="${invoice.observation}"
+						th:if="${not #strings.isEmpty(invoice.observation)}"></p>
+					<h4 class="card-title" th:text="'No tiene observaciones'"
+						th:if="${#strings.isEmpty(invoice.observation)}"></h4>
+				</div>
+			</div>
+
+			<a th:href="@{'/view/' + ${invoice.client.id}}"
+				class="btn btn-light btn-sm">&laquo; back</a>
+
+		</div>
+
+	</div>
+
+	<footer th:replace="layout/layout :: footer"></footer>
+
+</body>
+
+</html>

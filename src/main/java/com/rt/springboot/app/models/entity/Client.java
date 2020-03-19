@@ -61,6 +61,11 @@ public class Client implements Serializable {
 		return serialVersionUID;
 	}
 
+	@Override
+	public String toString() {
+		return firstName + " " + lastName;
+	}
+	
 	/*----- Getters & Setters -----*/
 	public Long getId() {
 		return id;

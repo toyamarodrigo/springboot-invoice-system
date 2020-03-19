@@ -33,6 +33,7 @@ public class Invoice implements Serializable {
 
 	@NotEmpty
 	private String description;
+	
 	private String observation;
 
 	@Temporal(TemporalType.DATE)

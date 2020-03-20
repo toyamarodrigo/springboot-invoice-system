@@ -47,6 +47,12 @@ public class ClientServiceImpl implements IClientService {
 	public Client findOne(Long id) {
 		return clientDao.findById(id).orElse(null);
 	}
+	
+	@Override
+	@Transactional(readOnly = true)
+	public Client fetchByIdWithInvoices(Long id) {
+		return clientDao.fetchByIdWithInvoices(id);
+	}
 
 	/*----- Method Save -----*/
 	@Override

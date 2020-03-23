@@ -75,7 +75,7 @@ public class ClientController {
 	}
 
 	/* ----- List Clients ----- */
-	@GetMapping(value = "/list")
+	@GetMapping(value = {"/list", "/"})
 	public String list(@RequestParam(name = "page", defaultValue = "0") int page, Model model) {
 
 		Pageable pageRequest = PageRequest.of(page, 5);

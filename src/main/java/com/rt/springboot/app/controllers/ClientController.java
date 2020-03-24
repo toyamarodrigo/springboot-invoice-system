@@ -17,6 +17,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -54,7 +55,7 @@ public class ClientController {
 
 	/* ----- View Photo ----- */
 	// .+ = retorna el nombre del archico pero sin formato
-	@Secured("ROLE_USER")
+	@PreAuthorize("hasRole('ROLE_USER')")
 	@GetMapping(value = "/uploads/{filename:.+}")
 	public ResponseEntity<Resource> viewPhoto(@PathVariable String filename) {
 
@@ -155,7 +156,9 @@ public class ClientController {
 	}
 
 	/* ----- Edit Client ----- */
-	@Secured("ROLE_ADMIN")
+	
+	// PreAuthorize es lo mismo que @Secured("ROLE_ADMIN")
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping(value = "/form/{id}")
 	public String update(@PathVariable(value = "id") Long id, RedirectAttributes flash, Model model) {
 

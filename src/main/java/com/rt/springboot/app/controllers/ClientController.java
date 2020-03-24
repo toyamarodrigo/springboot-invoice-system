@@ -2,6 +2,7 @@ package com.rt.springboot.app.controllers;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.util.Collection;
 
 import javax.validation.Valid;
 
@@ -15,6 +16,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -96,6 +100,12 @@ public class ClientController {
 		
 		if(auth != null) {
 			logger.info("Utilizando forma estatica 'SecurityContextHolder.getContext().getAuthentication();': Usuario autenticado, username: " + auth.getName());
+		}
+		
+		if(hasRole("ROLE_ADMIN")) {
+			logger.info("Hola " + auth.getName() + " tienes acceso");
+		} else {
+			logger.info("Hola " + auth.getName() + " NO tienes acceso");
 		}
 		
 		Pageable pageRequest = PageRequest.of(page, 5);
@@ -199,4 +209,34 @@ public class ClientController {
 			}
 		return"redirect:/list";
 		}
+	
+	
+	private boolean hasRole(String role) {
+		
+		SecurityContext context = SecurityContextHolder.getContext();
+		
+		if(context == null) { return false; }
+		
+		Authentication auth = context.getAuthentication();
+		
+		if(auth == null) { return false; }
+		
+		Collection<? extends GrantedAuthority> authorities = auth.getAuthorities();
+		
+		/*
+		for(GrantedAuthority authority : authorities) {
+			if(role.equals(authority.getAuthority())) { 
+				logger.info("Hola " + auth.getName() + " tu role es: " + authority.getAuthority());
+				return true; 
+			}
+		}
+		
+		return false;
+		*/
+		
+		// contains(GrantedAuthority) devuelve true o false si contiene o no el elemento de la coleccion
+		return authorities.contains(new SimpleGrantedAuthority(role));
+		
+	}
+	
 }

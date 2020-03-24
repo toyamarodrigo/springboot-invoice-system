@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.Collection;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.apache.commons.logging.Log;
@@ -15,11 +16,13 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestWrapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -51,6 +54,7 @@ public class ClientController {
 
 	/* ----- View Photo ----- */
 	// .+ = retorna el nombre del archico pero sin formato
+	@Secured("ROLE_USER")
 	@GetMapping(value = "/uploads/{filename:.+}")
 	public ResponseEntity<Resource> viewPhoto(@PathVariable String filename) {
 
@@ -69,6 +73,7 @@ public class ClientController {
 	}
 
 	/* ----- View Clients Details ----- */
+	@Secured("ROLE_USER")
 	@GetMapping(value = "/view/{id}")
 	public String view(@PathVariable(value = "id") Long id, Model model, RedirectAttributes flash) {
 
@@ -87,8 +92,10 @@ public class ClientController {
 	/* ----- List Clients ----- */
 	@GetMapping(value = {"/list", "/"})
 	public String list(@RequestParam(name = "page", defaultValue = "0") int page, Model model,
-			Authentication authentication) {
+			Authentication authentication,
+			HttpServletRequest request) {
 
+		// 2 formas de ver Roles
 		
 		// Forma 1
 		if(authentication != null) {
@@ -102,10 +109,29 @@ public class ClientController {
 			logger.info("Utilizando forma estatica 'SecurityContextHolder.getContext().getAuthentication();': Usuario autenticado, username: " + auth.getName());
 		}
 		
+		// 3 formas de asignar ROLES
+		
+		// Forma 1
 		if(hasRole("ROLE_ADMIN")) {
 			logger.info("Hola " + auth.getName() + " tienes acceso");
 		} else {
 			logger.info("Hola " + auth.getName() + " NO tienes acceso");
+		}
+		
+		// Forma 2
+		SecurityContextHolderAwareRequestWrapper securityContext= new SecurityContextHolderAwareRequestWrapper(request, "ROLE_");
+		
+		if(securityContext.isUserInRole("ADMIN")) {
+			logger.info("Forma usando SecurityContextHolderAwareRequestWrapper: Hola " + auth.getName() + " tienes acceso");
+		} else {
+			logger.info("Forma usando SecurityContextHolderAwareRequestWrapper: Hola " + auth.getName() + " NO tienes acceso");
+		}
+		
+		// Forma 3
+		if(request.isUserInRole("ROLE_ADMIN")) {
+			logger.info("Forma usando HttpServletRequest: Hola " + auth.getName() + " tienes acceso");
+		} else {
+			logger.info("Forma usando HttpServletRequest: Hola " + auth.getName() + " NO tienes acceso");
 		}
 		
 		Pageable pageRequest = PageRequest.of(page, 5);
@@ -119,6 +145,7 @@ public class ClientController {
 	}
 
 	/* ----- Create Client ----- */
+	@Secured("ROLE_ADMIN")
 	@GetMapping(value = "/form")
 	public String create(Model model) {
 		Client client = new Client();
@@ -128,6 +155,7 @@ public class ClientController {
 	}
 
 	/* ----- Edit Client ----- */
+	@Secured("ROLE_ADMIN")
 	@GetMapping(value = "/form/{id}")
 	public String update(@PathVariable(value = "id") Long id, RedirectAttributes flash, Model model) {
 
@@ -151,6 +179,7 @@ public class ClientController {
 	}
 
 	/* ----- Save Client ----- */
+	@Secured("ROLE_ADMIN")
 	@PostMapping(value = "/form")
 	public String save(@Valid Client client, BindingResult result, Model model,
 			@RequestParam("file") MultipartFile photo, RedirectAttributes flash, SessionStatus status) {
@@ -194,6 +223,7 @@ public class ClientController {
 	}
 
 	/* ----- Delete Client ----- */
+	@Secured("ROLE_ADMIN")
 	@GetMapping(value = "/delete/{id}")
 	public String delete(@PathVariable(value = "id") Long id, RedirectAttributes flash) {
 

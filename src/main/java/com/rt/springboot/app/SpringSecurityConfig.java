@@ -11,6 +11,8 @@ import org.springframework.security.core.userdetails.User.UserBuilder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import com.rt.springboot.app.auth.handler.LoginSuccessHandler;
+
 @Configuration
 public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 	
@@ -18,6 +20,9 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 	public BCryptPasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
+	
+	@Autowired
+	private LoginSuccessHandler successHandler;
 	
 	// Metodo para autorizaciones http
 	@Override
@@ -31,7 +36,9 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 		.antMatchers("/invoice/**").hasAnyRole("ADMIN")
 		.anyRequest().authenticated()
 		.and()
-		.formLogin().loginPage("/login")
+		.formLogin()
+		.successHandler(successHandler)
+		.loginPage("/login")
 		.permitAll()
 		.and()
 		.logout().permitAll()

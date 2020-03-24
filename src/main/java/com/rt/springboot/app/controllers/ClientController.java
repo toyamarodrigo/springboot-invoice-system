@@ -5,6 +5,8 @@ import java.net.MalformedURLException;
 
 import javax.validation.Valid;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.data.domain.Page;
@@ -12,6 +14,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -32,6 +36,8 @@ import com.rt.springboot.app.util.paginator.PageRender;
 @Controller
 @SessionAttributes("client")
 public class ClientController {
+	
+	protected final Log logger = LogFactory.getLog(this.getClass());
 
 	@Autowired
 	private IClientService clientService;
@@ -76,8 +82,22 @@ public class ClientController {
 
 	/* ----- List Clients ----- */
 	@GetMapping(value = {"/list", "/"})
-	public String list(@RequestParam(name = "page", defaultValue = "0") int page, Model model) {
+	public String list(@RequestParam(name = "page", defaultValue = "0") int page, Model model,
+			Authentication authentication) {
 
+		
+		// Forma 1
+		if(authentication != null) {
+			logger.info("Hola usuario autenticado, tu username es: " + authentication.getName());
+		}
+		
+		// Forma 2 (estatica)
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		
+		if(auth != null) {
+			logger.info("Utilizando forma estatica 'SecurityContextHolder.getContext().getAuthentication();': Usuario autenticado, username: " + auth.getName());
+		}
+		
 		Pageable pageRequest = PageRequest.of(page, 5);
 		Page<Client> clients = clientService.findAll(pageRequest);
 		PageRender<Client> pageRender = new PageRender<>("/list", clients);

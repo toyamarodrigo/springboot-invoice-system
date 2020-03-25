@@ -1,7 +1,6 @@
 package com.rt.springboot.app;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -18,13 +17,11 @@ import com.rt.springboot.app.auth.handler.LoginSuccessHandler;
 @Configuration
 public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 	
-	@Bean
-	public BCryptPasswordEncoder passwordEncoder() {
-		return new BCryptPasswordEncoder();
-	}
-	
 	@Autowired
 	private LoginSuccessHandler successHandler;
+	
+	@Autowired
+	private BCryptPasswordEncoder passwordEncoder;
 	
 	// Metodo para autorizaciones http
 	@Override
@@ -54,7 +51,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired // para poder inyectar
 	public void configuredGlobal(AuthenticationManagerBuilder builder) throws Exception {
 		
-		PasswordEncoder encoder = passwordEncoder();
+		PasswordEncoder encoder = this.passwordEncoder;
 		
 		// UserBuilder users = User.withDefaultPasswordEncoder();
 		

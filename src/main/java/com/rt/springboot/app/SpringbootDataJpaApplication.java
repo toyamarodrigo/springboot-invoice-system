@@ -33,6 +33,8 @@ public class SpringbootDataJpaApplication implements CommandLineRunner {
 			System.out.println(bcryptPassword);
 		}
 	
+		
+		
 	}
 	
 	

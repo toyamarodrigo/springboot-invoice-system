@@ -12,9 +12,11 @@
 
 			<div class="card-header" th:text="${title}"></div>
 			<div class="card-body">
+			
 				<h4 class="card-title">
 					<a th:href="@{'/view/' + ${invoice.client.id}}"
 						class="btn btn-light btn-sm">&laquo; back</a>
+						<a class="btn btn-danger btn-sm float-right" th:href="@{'/invoice/view/' + ${invoice.id}(format=pdf)}">PDF</a>
 				</h4>
 
 				<ul class="list-group py-3">

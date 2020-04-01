@@ -13,14 +13,14 @@
 				<h4 class="card-title">
 					<a class="btn btn-light btn-sm"
 						th:href="@{'/view/' + ${invoice.client.id}}"
-						th:text="'&laquo; back'"></a>
+						th:utext="#{text.global.volver}"></a>
 				</h4>
 
 				<form th:action="@{/invoice/form/}" th:object="${invoice}"
 					method="post">
 
 					<div class="form-group row">
-						<label class="col-sm-2 col-form-label" th:text="'Client'"></label>
+						<label class="col-sm-2 col-form-label" th:text="#{text.factura.form.cliente}"></label>
 						<div class="col-sm-6">
 							<input
 								th:value="${invoice.client.firstName} + ' ' + ${invoice.client.lastName}"
@@ -30,7 +30,7 @@
 
 					<div class="form-group row">
 						<label for="description" class="col-sm-2 col-form-label"
-							th:text="'Description'"></label>
+							th:text="#{text.cliente.factura.form.descripcion}"></label>
 						<div class="col-sm-6">
 							<input type="text" th:field="*{description}" class="form-control" th:errorclass= "'form-control is-invalid'"/>
 							<div class="invalid-feedback" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></div>
@@ -39,7 +39,7 @@
 
 					<div class="form-group row">
 						<label for="observation" class="col-sm-2 col-form-label"
-							th:text="'Observation'"></label>
+							th:text="#{text.factura.form.observacion}"></label>
 						<div class="col-sm-6">
 							<textarea th:field="*{observation}" class="form-control"></textarea>
 						</div>
@@ -47,7 +47,7 @@
 
 					<div class="form-group row">
 						<label for="search_product" class="col-sm-2 col-form-label"
-							th:text="'Search Product'"></label>
+							th:text="#{text.factura.form.buscar}"></label>
 						<div class="col-sm-6">
 							<input type="text" name="search_product" id="search_product"
 								class="form-control" />
@@ -60,18 +60,18 @@
 						class="table table-sm table-striped table-hover">
 						<thead>
 							<tr>
-								<th>Name</th>
-								<th>Price</th>
-								<th>Amount</th>
-								<th>Total</th>
-								<th>Delete</th>
+								<th th:text="#{text.factura.form.item.nombre}">Nombre</th>
+								<th th:text="#{text.factura.form.item.precio}">Precio</th>
+								<th th:text="#{text.factura.form.item.cantidad}">Cantidad</th>
+								<th th:text="#{text.factura.form.item.total}">Total</th>
+								<th th:text="#{text.factura.form.item.eliminar}">Eliminar</th>
 							</tr>
 						</thead>
 						<tbody>
 						</tbody>
 					</table>
 					
-					<h5>Total <span class="badge badge-secondary" id="final_total">0</span></h5>
+					<h5 th:text="#{text.factura.form.total}">Total<span class="badge badge-secondary" id="final_total">0</span></h5>
 
 					<div class="form-group row">
 						<div class="col-sm-6">

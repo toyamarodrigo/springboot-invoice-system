@@ -10,14 +10,12 @@
 
 		<div class="card bg-danger text-white">
 
-			<div class="card-header">Error: Acceso Denegado</div>
+			<div class="card-header" th:text="#{text.security.error.403.titulo}">Error: Acceso Denegado</div>
 			<div class="card-body">
 
-				<h5 class="card-title">
-					Los sentimos <span th:text="${#authentication.name}"></span>,
-					NO tienes permisos para accecder a este recurso
+				<h5 class="card-title" th:utext="#{text.security.error.403.permiso(${#authentication.name})}">
 				</h5>
-				<a th:href="@{/list}" class="btn btn-outline-light" role="button">Ir
+				<a th:href="@{/list}" class="btn btn-outline-light" role="button" th:text="#{text.security.error.403.volver}">Ir
 					a Inicio</a>
 
 			</div>

@@ -37,11 +37,11 @@
 							<td th:text="${client.email}"></td>
 							<td th:text="${client.createAt}"></td>
 							<td sec:authorize="hasRole('ROLE_ADMIN')"><a class="btn btn-success btn-xs"
-								th:href="@{'/invoice/form/' + ${client.id}}" th:text="'create invoice'"></a></td>
+								th:href="@{'/invoice/form/' + ${client.id}}" th:text="#{text.cliente.crear}"></a></td>
 							<td sec:authorize="hasRole('ROLE_ADMIN')"><a class="btn btn-primary btn-xs"
-								th:href="@{/form/} + ${client.id}" th:text="'edit'"></a></td>
+								th:href="@{/form/} + ${client.id}" th:text="#{text.cliente.editar}"></a></td>
 							<td sec:authorize="hasRole('ROLE_ADMIN')"><a class="btn btn-danger btn-xs"
-								th:href="@{/delete/} + ${client.id}" th:text="'delete'"
+								th:href="@{/delete/} + ${client.id}" th:text="#{text.cliente.eliminar}"
 								onclick="return confirm('Estas seguro que quiere eliminar?');"></a>
 							</td>
 						</tr>

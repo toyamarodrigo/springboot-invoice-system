@@ -15,38 +15,38 @@
 			
 				<h4 class="card-title">
 					<a th:href="@{'/view/' + ${invoice.client.id}}"
-						class="btn btn-light btn-sm">&laquo; back</a>
+						class="btn btn-light btn-sm" th:text="#{text.global.volver}">&laquo; back</a>
 						<a class="btn btn-danger btn-sm float-right" th:href="@{'/invoice/view/' + ${invoice.id}(format=pdf)}">PDF</a>
 				</h4>
 
 				<ul class="list-group py-3">
 					<li class="list-group-item list-group-item-primary"
-						th:text="'Client Details'"></li>
+						th:text="#{text.factura.ver.datos.cliente}"></li>
 					<li class="list-group-item" th:text="${invoice.client}"></li>
 					<li class="list-group-item" th:text="${invoice.client.email}"></li>
 				</ul>
 
 				<ul class="list-group py-2">
 					<li class="list-group-item list-group-item-success"
-						th:text="'Invoice Details'"></li>
+						th:text="#{text.factura.ver.datos.factura}"></li>
 					<li class="list-group-item" th:text="'Page: '+${invoice.id}"></li>
 					<li class="list-group-item"
-						th:text="'Description: '+${invoice.description}"></li>
-					<li class="list-group-item" th:text="'Date: '+${invoice.createAt}"></li>
+						th:text="#{text.cliente.factura.descripcion} + ': ' + ${invoice.description}"></li>
+					<li class="list-group-item" th:text="#{text.cliente.factura.fecha} + ': ' + ${invoice.createAt}"></li>
 				</ul>
 
 				<div class="alert alert-info my-4"
 					th:if="${#lists.isEmpty(invoice.items)}"
-					th:text="'No hay lineas para la factura' + ${invoice.description}"></div>
+					th:text="#{text.factura.ver.no.lineas} +  ' ' + ${invoice.description}"></div>
 
 				<table th:if="${not #lists.isEmpty(invoice.items)}"
 					class="table table-striped table-hover table-bordered my-3">
 					<thead>
 						<tr>
-							<th>Product</th>
-							<th>Price</th>
-							<th>Amount</th>
-							<th>Total</th>
+							<th th:text="#{text.factura.form.item.nombre}">Product</th>
+							<th th:text="#{text.factura.form.item.precio}">Price</th>
+							<th th:text="#{text.factura.form.item.cantidad}">Amount</th>
+							<th th:text="#{text.factura.form.item.total}">Total</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -60,13 +60,13 @@
 
 				</table>
 
-				<h5 class="text-right pr-4">
+				<h5 class="text-right pr-4" th:text="#{text.factura.form.total}">
 					Final Total <span th:text="${invoice.total}"
 						class="badge badge-secondary"></span>
 				</h5>
 
 				<div class="card border-info m-4" style="max-width: 20rem;">
-					<div class="card-header">Observation</div>
+					<div class="card-header" th:text="#{text.factura.form.observacion}">Observation</div>
 					<div class="card-body">
 						<p class="card-text" th:text="${invoice.observation}"
 							th:if="${not #strings.isEmpty(invoice.observation)}"></p>

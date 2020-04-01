@@ -12,11 +12,13 @@
 
 			<div class="card-header" th:text="${title}"></div>
 			<div class="card-body">
-			
+
 				<h4 class="card-title">
 					<a th:href="@{'/view/' + ${invoice.client.id}}"
-						class="btn btn-light btn-sm" th:text="#{text.global.volver}">&laquo; back</a>
-						<a class="btn btn-danger btn-sm float-right" th:href="@{'/invoice/view/' + ${invoice.id}(format=pdf)}">PDF</a>
+						class="btn btn-light btn-sm" th:utext="#{text.global.volver}">&laquo;
+						back</a>
+					<a class="btn btn-danger btn-sm float-right"
+						th:href="@{'/invoice/view/' + ${invoice.id}(format=pdf)}">PDF</a>
 				</h4>
 
 				<ul class="list-group py-3">
@@ -29,10 +31,12 @@
 				<ul class="list-group py-2">
 					<li class="list-group-item list-group-item-success"
 						th:text="#{text.factura.ver.datos.factura}"></li>
-					<li class="list-group-item" th:text="'Page: '+${invoice.id}"></li>
+					<li class="list-group-item"
+						th:text="#{text.cliente.factura.folio} + ': ' + ${invoice.id}"></li>
 					<li class="list-group-item"
 						th:text="#{text.cliente.factura.descripcion} + ': ' + ${invoice.description}"></li>
-					<li class="list-group-item" th:text="#{text.cliente.factura.fecha} + ': ' + ${invoice.createAt}"></li>
+					<li class="list-group-item"
+						th:text="#{text.cliente.factura.fecha} + ': ' + ${invoice.createAt}"></li>
 				</ul>
 
 				<div class="alert alert-info my-4"
@@ -60,9 +64,10 @@
 
 				</table>
 
-				<h5 class="text-right pr-4" th:text="#{text.factura.form.total}">
-					Final Total <span th:text="${invoice.total}"
-						class="badge badge-secondary"></span>
+				<h5 class="text-right pr-4">
+					<span th:text="#{text.factura.form.total}">Final Total </span>
+					:
+					<span th:text="${invoice.total}" class="badge badge-secondary"></span>
 				</h5>
 
 				<div class="card border-info m-4" style="max-width: 20rem;">
@@ -70,13 +75,15 @@
 					<div class="card-body">
 						<p class="card-text" th:text="${invoice.observation}"
 							th:if="${not #strings.isEmpty(invoice.observation)}"></p>
-						<h4 class="card-title" th:text="'No tiene observaciones'"
+						<h4 class="card-title"
+							th:text="#{text.factura.ver.no.observaciones}"
 							th:if="${#strings.isEmpty(invoice.observation)}"></h4>
 					</div>
 				</div>
 
 				<a th:href="@{'/view/' + ${invoice.client.id}}"
-					class="btn btn-light btn-sm">&laquo; back</a>
+					class="btn btn-light btn-sm" th:utext="#{text.global.volver}">&laquo;
+					back</a>
 			</div>
 
 

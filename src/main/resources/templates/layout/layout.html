@@ -27,12 +27,14 @@
 						<a class="nav-link" th:href="@{/}" th:text="#{text.menu.home}">Home</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" th:href="@{/list}" th:text="#{text.menu.customer}">Clients</a>
+						<a class="nav-link" th:href="@{/list}"
+							th:text="#{text.menu.customer}">Clients</a>
 					</li>
 				</ul>
 				<ul class="navbar-nav navbar-right">
 					<li sec:authorize="!isAuthenticated()">
-						<a class="btn btn-outline-primary" th:href="@{/login}" th:text="#{text.menu.signin}">Sign In</a>
+						<a class="btn btn-outline-primary" th:href="@{/login}"
+							th:text="#{text.menu.signin}">Sign In</a>
 					</li>
 					<li sec:authorize="isAuthenticated()" class="dropdown">
 						<a class="btn btn-primary dropdown-toggle" href="#" role="button"
@@ -44,7 +46,8 @@
 						<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
 							<form id="logoutForm" th:action="@{/logout}" method="post">
 								<button onclick="document.getElementById('logoutForm').submit()"
-									type="submit" class="dropdown-item" th:text="#{text.menu.signout}">Sign Out</button>
+									type="submit" class="dropdown-item"
+									th:text="#{text.menu.signout}">Sign Out</button>
 								<input type="hidden" th:name="${_csrf.parameterName}"
 									th:value=${_csrf.token}>
 							</form>
@@ -69,9 +72,11 @@
 						</a>
 						<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
 							<a th:href="@{/locale(lang=es_ES)}"
-								class="btn btn-outline-success my-2 mx-2" th:text="#{text.locale.es}">ES</a>
+								class="btn btn-outline-success my-2 mx-2"
+								th:text="#{text.locale.es}">ES</a>
 							<a th:href="@{/locale(lang=en_EN)}"
-								class="btn btn-outline-success my-2 mx-2" th:text="#{text.locale.en}">EN</a>
+								class="btn btn-outline-success my-2 mx-2"
+								th:text="#{text.locale.en}">EN</a>
 						</div>
 
 					</li>
@@ -96,10 +101,10 @@
 	<footer th:fragment="footer" class="container">
 		<hr />
 
-		<p sec:authorize="isAuthenticated()" th:text="#{text.footer.user}">
-			Usuario logeado:
-			<span sec:authentication="name" th:text="#{text.footer.roles}"></span>
-			| Roles:
+		<p sec:authorize="isAuthenticated()">
+			<span th:text="#{text.footer.user}"> Usuario logeado: </span>
+			<span sec:authentication="name"></span>
+			<span th:text="#{text.footer.roles}"> | Roles:</span>
 			<span sec:authentication="principal.authorities"></span>
 		</p>
 

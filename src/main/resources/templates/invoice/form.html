@@ -30,7 +30,7 @@
 
 					<div class="form-group row">
 						<label for="description" class="col-sm-2 col-form-label"
-							th:text="#{text.cliente.factura.form.descripcion}"></label>
+							th:text="#{text.cliente.factura.descripcion}"></label>
 						<div class="col-sm-6">
 							<input type="text" th:field="*{description}" class="form-control" th:errorclass= "'form-control is-invalid'"/>
 							<div class="invalid-feedback" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></div>
@@ -71,11 +71,14 @@
 						</tbody>
 					</table>
 					
-					<h5 th:text="#{text.factura.form.total}">Total<span class="badge badge-secondary" id="final_total">0</span></h5>
+					<h5>
+						<span th:text="#{text.factura.form.total}">Total</span>
+						<span class="badge badge-secondary" id="final_total">0</span>
+					</h5>
 
 					<div class="form-group row">
 						<div class="col-sm-6">
-							<input type="submit" th:field="${title}"
+							<input type="submit" th:value="#{text.factura.form.boton.guardar}"
 								class="btn btn-secondary" />
 						</div>
 					</div>

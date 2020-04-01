@@ -19,7 +19,6 @@ import org.springframework.web.servlet.support.SessionFlashMapManager;
 @Component
 public class LoginSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
 
-	
 	@Autowired
 	private MessageSource messageSource;
 	

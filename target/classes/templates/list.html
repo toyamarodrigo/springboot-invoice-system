@@ -9,7 +9,7 @@
 
 	<div class="container py-4">
 		<div class="card bg-light">
-			<div class="card-header" th:text="${title}"></div>
+			<div class="card-header bg-dark text-white" th:text="${title}"></div>
 			<div class="card-body">
 				<h4 class="card-title">
 					<a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/form}" class="btn btn-primary btn-xs">create

@@ -16,7 +16,7 @@
 <body>
 	<header th:fragment="header">
 		<nav class="navbar navbar-expand-md navbar-dark bg-dark">
-			<a class="navbar-brand" th:href="@{/}">Spring Boot</a>
+			<a class="navbar-brand" th:href="@{/}">Spring boot</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
 				aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
@@ -64,22 +64,6 @@
 							class="btn btn-outline-success">EN</a>
 					</li>
 
-					<li class="nav-item dropdown show mx-2">
-						<a class="btn btn-primary dropdown-toggle" href="#" role="button"
-							id="dropdownLenguaje" data-toggle="dropdown" aria-haspopup="true"
-							aria-expanded="false">
-							<span th:text="#{text.locale.language}"></span>
-						</a>
-						<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-							<a th:href="@{/locale(lang=es_ES)}"
-								class="btn btn-outline-success my-2 mx-2"
-								th:text="#{text.locale.es}">ES</a>
-							<a th:href="@{/locale(lang=en_EN)}"
-								class="btn btn-outline-success my-2 mx-2"
-								th:text="#{text.locale.en}">EN</a>
-						</div>
-
-					</li>
 				</ul>
 			</div>
 

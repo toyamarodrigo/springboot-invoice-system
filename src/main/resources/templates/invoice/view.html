@@ -10,14 +10,15 @@
 
 		<div class="card bg-light">
 
-			<div class="card-header" th:text="${title}"></div>
+			<div class="card-header bg-dark text-white" th:text="${title}"></div>
 			<div class="card-body">
 
 				<h4 class="card-title">
 					<a th:href="@{'/view/' + ${invoice.client.id}}"
-						class="btn btn-light btn-sm" th:utext="#{text.global.volver}">&laquo;
-						back</a>
-					<a class="btn btn-danger btn-sm float-right"
+						class="btn btn-secondary btn-sm" th:utext="#{text.global.volver}"></a>
+						<a class="btn btn-success btn-sm float-right mx-2"
+						th:href="@{'/invoice/view/' + ${invoice.id}(format=xls)}">XLS</a>
+					<a class="btn btn-danger btn-sm float-right mx-2"
 						th:href="@{'/invoice/view/' + ${invoice.id}(format=pdf)}">PDF</a>
 				</h4>
 
@@ -82,8 +83,7 @@
 				</div>
 
 				<a th:href="@{'/view/' + ${invoice.client.id}}"
-					class="btn btn-light btn-sm" th:utext="#{text.global.volver}">&laquo;
-					back</a>
+					class="btn btn-secondary btn-sm" th:utext="#{text.global.volver}"></a>
 			</div>
 
 

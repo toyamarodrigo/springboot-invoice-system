@@ -9,7 +9,7 @@
 
 	<div class="container py-4">
 		<div class="card bg-light">
-			<div class="card-header" th:text="${title}"></div>
+			<div class="card-header bg-dark text-white" th:text="${title}"></div>
 			<div class="card-body">
 
 				<h4 class="card-title">
@@ -22,15 +22,15 @@
 					th:src="@{'/uploads/' + ${client.photo}}" th:alt="${client.photo}">
 
 				<ul class="list-group">
-					<li class="list-group-item" th:text="${client.firstName}"></li>
-					<li class="list-group-item" th:text="${client.lastName}"></li>
-					<li class="list-group-item" th:text="${client.email}"></li>
-					<li class="list-group-item" th:text="${client.createAt}"></li>
+					<li class="list-group-item" th:text="#{text.cliente.nombre} + ': ' + ${client.firstName}"></li>
+					<li class="list-group-item" th:text="#{text.cliente.apellido} + ': ' + ${client.lastName}"></li>
+					<li class="list-group-item" th:text="#{text.cliente.email} + ': ' + ${client.email}"></li>
+					<li class="list-group-item" th:text="#{text.cliente.createAt} + ': ' + ${client.createAt}"></li>
 				</ul>
 
 				<div th:if="${#lists.isEmpty(client.invoices)}"
 					class="alert alert-info my-4"
-					th:text="#{text.cliente.detalle.no.facturas} + ' ' + ${client.firstName} + ' ' + ${client.lastName}"></div>
+					th:text="#{text.cliente.detalle.no.facturas} + ' ' + ${client.firstName} + ' ' + ${client.lastName} + '.'"></div>
 				<table th:if="${not #lists.isEmpty(client.invoices)}"
 					class="table table-bordered table-striped my-4">
 					<thead class="thead-dark">
@@ -48,13 +48,15 @@
 							<td th:text="${invoice.description}"></td>
 							<td th:text="${invoice.createAt}"></td>
 							<td th:text="${invoice.total}"></td>
-							<td sec:authorize="hasRole('ROLE_ADMIN')"><a class="btn btn-primary btn-sm" th:href="@{'/invoice/view/' + ${invoice.id}}" th:text="#{text.cliente.factura.detalle}"></a></td>
+							<td sec:authorize="hasRole('ROLE_ADMIN')"><a class="btn btn-info btn-sm" th:href="@{'/invoice/view/' + ${invoice.id}}" th:text="#{text.cliente.factura.detalle}"></a></td>
 							<td sec:authorize="hasRole('ROLE_ADMIN')"><a class="btn btn-danger btn-sm" th:href="@{'/invoice/delete/' + ${invoice.id}}" th:text="#{text.cliente.factura.eliminar}"
 							onclick="return confirm('Estas seguro que desea eliminar la factura?');"></a></td>
 						</tr>
 					</tbody>
 				</table>
 
+									<a th:href="@{'/list/'}"
+						class="btn btn-secondary btn-sm" th:utext="#{text.global.volver}"></a>
 			</div>
 		</div>
 	</div>

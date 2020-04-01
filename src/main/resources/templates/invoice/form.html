@@ -8,10 +8,10 @@
 
 	<div class="container py-4">
 		<div class="card bg-light">
-			<div class="card-header" th:text="${title}"></div>
+			<div class="card-header bg-success text-white font-weight-bold" th:text="${title}"></div>
 			<div class="card-body">
 				<h4 class="card-title">
-					<a class="btn btn-light btn-sm"
+					<a class="btn btn-secondary btn-sm"
 						th:href="@{'/view/' + ${invoice.client.id}}"
 						th:utext="#{text.global.volver}"></a>
 				</h4>
@@ -71,7 +71,7 @@
 						</tbody>
 					</table>
 					
-					<h5>
+					<h5 class="pb-3">
 						<span th:text="#{text.factura.form.total}">Total</span>
 						<span class="badge badge-secondary" id="final_total">0</span>
 					</h5>
@@ -79,7 +79,7 @@
 					<div class="form-group row">
 						<div class="col-sm-6">
 							<input type="submit" th:value="#{text.factura.form.boton.guardar}"
-								class="btn btn-secondary" />
+								class="btn btn-primary" />
 						</div>
 					</div>
 

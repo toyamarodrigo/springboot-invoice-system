@@ -8,8 +8,8 @@
   <header th:replace="layout/layout :: header"></header>
 
   <div class="container py-4">
-    <div class="card bg-dark text-white">
-      <div class="card-header" th:text="${title}"></div>
+    <div class="card bg-light">
+      <div class="card-header bg-info text-white" th:text="${title}"></div>
       <div class="card-body">
 
         <div th:object="${client}" th:remove="tag">
@@ -69,8 +69,8 @@
 
 					<div class="form-group row">
 						<div class="col-sm-6">
-							<input type="submit" th:value="#{text.cliente.form.crear}"
-								class="btn btn-secondary" />
+							<input type="submit" th:value="#{text.cliente.guardar}"
+								class="btn btn-success" />
 						</div>
 					</div>
 

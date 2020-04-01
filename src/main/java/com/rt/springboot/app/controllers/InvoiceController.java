@@ -66,7 +66,7 @@ public class InvoiceController {
 
 		Client client = clientService.findOne(clientId);
 		if (client == null) {
-			flash.addAttribute("error", "El cliente no existe en la base de datos");
+			flash.addAttribute("error", messageSource.getMessage("text.cliente.flash.db.error", null, locale));
 			return "redirect:/list";
 		}
 

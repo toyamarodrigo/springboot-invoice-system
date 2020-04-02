@@ -14,6 +14,8 @@
 				<h4 class="card-title">
 					<a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/form}" class="btn btn-primary btn-xs mb-1">create
 						client</a>
+						<a class="btn btn-success btn-sm float-right mx-2 mb-3"
+						th:href="@{'/list'(format=csv)}">CSV</a>
 				</h4>
 				<table class="table table-striped table-bordered">
 					<thead class="thead-inverse">

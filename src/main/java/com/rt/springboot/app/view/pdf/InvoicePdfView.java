@@ -45,7 +45,7 @@ public class InvoicePdfView extends AbstractPdfView {
 		// Detalles de Factura
 		PdfPTable table2 = new PdfPTable(1);
 		table2.setSpacingAfter(20);
-		cell = new PdfPCell(new Phrase(message.getMessage("text.factura.ver.datos.cliente")));
+		cell = new PdfPCell(new Phrase(message.getMessage("text.factura.ver.datos.factura")));
 		cell.setBackgroundColor(new Color(195, 230, 203));
 		cell.setPadding(8f);
 		table2.addCell(cell);

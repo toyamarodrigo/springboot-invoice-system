@@ -20,6 +20,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotEmpty;
+import javax.xml.bind.annotation.XmlTransient;
 
 @Entity
 @Table(name = "invoices")
@@ -100,6 +101,7 @@ public class Invoice implements Serializable {
 		this.createAt = createAt;
 	}
 
+	@XmlTransient
 	public Client getClient() {
 		return client;
 	}

@@ -23,12 +23,17 @@
 			</button>
 			<div class="collapse navbar-collapse">
 				<ul class="navbar-nav mr-auto">
-					<li class="nav-item active">
-						<a class="nav-link" th:href="@{/}" th:text="#{text.menu.home}">Home</a>
+					<li class="nav-item active px-3">
+						<a class="nav-link" th:href="@{/}">
+							<i class="fas fa-home"></i>
+							<span th:text="' ' + #{text.menu.home}"></span>
+						</a>
 					</li>
-					<li class="nav-item">
-						<a class="nav-link" th:href="@{/list}"
-							th:text="#{text.menu.customer}">Clients</a>
+					<li class="nav-item px-3">
+						<a class="nav-link" th:href="@{/list}">
+							<i class="fas fa-users"></i>
+							<span th:text="' ' + #{text.menu.customer}"></span>
+						</a>
 					</li>
 				</ul>
 				<ul class="navbar-nav navbar-right">
@@ -104,6 +109,7 @@
 		<script th:src="@{/js/popper.min.js}"></script>
 		<script th:src="@{/js/bootstrap.min.js}"></script>
 		<script th:src="@{/js/jquery-ui.min.js}"></script>
+		<script th:src="@{/js/all.min.js}"></script>
 	</footer>
 </body>
 

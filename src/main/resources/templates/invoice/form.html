@@ -8,19 +8,23 @@
 
 	<div class="container py-4">
 		<div class="card bg-light">
-			<div class="card-header bg-success text-white font-weight-bold" th:text="${title}"></div>
+			<div class="card-header bg-success text-white font-weight-bold"
+				th:text="${title}"></div>
 			<div class="card-body">
 				<h4 class="card-title">
 					<a class="btn btn-secondary btn-sm"
-						th:href="@{'/view/' + ${invoice.client.id}}"
-						th:utext="#{text.global.volver}"></a>
+						th:href="@{'/view/' + ${invoice.client.id}}">
+						<i class="fas fa-arrow-left"></i>
+						<span th:utext="#{text.global.volver}"></span>
+					</a>
 				</h4>
 
 				<form th:action="@{/invoice/form/}" th:object="${invoice}"
 					method="post">
 
 					<div class="form-group row">
-						<label class="col-sm-2 col-form-label" th:text="#{text.factura.form.cliente}"></label>
+						<label class="col-sm-2 col-form-label"
+							th:text="#{text.factura.form.cliente}"></label>
 						<div class="col-sm-6">
 							<input
 								th:value="${invoice.client.firstName} + ' ' + ${invoice.client.lastName}"
@@ -32,8 +36,11 @@
 						<label for="description" class="col-sm-2 col-form-label"
 							th:text="#{text.cliente.factura.descripcion}"></label>
 						<div class="col-sm-6">
-							<input type="text" th:field="*{description}" class="form-control" th:errorclass= "'form-control is-invalid'"/>
-							<div class="invalid-feedback" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></div>
+							<input type="text" th:field="*{description}" class="form-control"
+								th:errorclass="'form-control is-invalid'" />
+							<div class="invalid-feedback"
+								th:if="${#fields.hasErrors('description')}"
+								th:errors="*{description}"></div>
 						</div>
 					</div>
 
@@ -70,7 +77,7 @@
 						<tbody>
 						</tbody>
 					</table>
-					
+
 					<h5 class="pb-3">
 						<span th:text="#{text.factura.form.total}">Total</span>
 						<span class="badge badge-secondary" id="final_total">0</span>
@@ -78,7 +85,8 @@
 
 					<div class="form-group row">
 						<div class="col-sm-6">
-							<input type="submit" th:value="#{text.factura.form.boton.guardar}"
+							<input type="submit"
+								th:value="#{text.factura.form.boton.guardar}"
 								class="btn btn-primary" />
 						</div>
 					</div>

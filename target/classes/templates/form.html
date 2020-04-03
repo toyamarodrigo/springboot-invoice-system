@@ -5,37 +5,43 @@
 
 <body>
 
-  <header th:replace="layout/layout :: header"></header>
+	<header th:replace="layout/layout :: header"></header>
 
-  <div class="container py-4">
-    <div class="card bg-light">
-      <div class="card-header bg-primary text-white" th:text="${title}"></div>
-      <div class="card-body">
-      
-      					<a class="btn btn-secondary btn-sm mb-4"
-						th:href="@{'/list'}"
-						th:utext="#{text.global.volver}"></a>
+	<div class="container py-4">
+		<div class="card bg-light">
+			<div class="card-header bg-primary text-white h4 pl-4"
+				th:text="${title}"></div>
+			<div class="card-body">
 
-        <div th:object="${client}" th:remove="tag">
-          <ul th:if="${#fields.hasErrors('*')}" class="alert alert-danger">
+				<a class="btn btn-secondary btn-sm mb-4" th:href="@{'/list'}">
+					<i class="fas fa-arrow-left"></i>
+					<span th:text="' ' + #{text.global.volver}"></span>
+				</a>
+
+				<div th:object="${client}" th:remove="tag">
+					<ul th:if="${#fields.hasErrors('*')}" class="alert alert-danger">
 						<li th:each="err: ${#fields.errors('*')}" th:text="${err}"></li>
 					</ul>
 				</div>
 
-				<form th:action="@{/form}" th:object="${client}" method="post" enctype="multipart/form-data">
+				<form th:action="@{/form}" th:object="${client}" method="post"
+					enctype="multipart/form-data">
 
 					<div class="form-group row">
-						<label class="col-sm-2 col-form-label" th:text="#{text.cliente.nombre}">Nombre</label>
+						<label class="col-sm-2 col-form-label"
+							th:text="#{text.cliente.nombre}">Nombre</label>
 						<div class="col-sm-6">
 							<input type="text" th:field="*{firstName}" class="form-control"
 								th:errorclass="'form-control alert-danger'" /> <small
 								class="form-text text-danger"
-								th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></small>
+								th:if="${#fields.hasErrors('firstName')}"
+								th:errors="*{firstName}"></small>
 						</div>
 					</div>
 
 					<div class="form-group row">
-						<label class="col-sm-2 col-form-label" th:text="#{text.cliente.apellido}">Apellido</label>
+						<label class="col-sm-2 col-form-label"
+							th:text="#{text.cliente.apellido}">Apellido</label>
 						<div class="col-sm-6">
 							<input type="text" th:field="*{lastName}" class="form-control"
 								th:errorclass="'form-control alert-danger'" /> <small
@@ -45,7 +51,8 @@
 					</div>
 
 					<div class="form-group row">
-						<label class="col-sm-2 col-form-label" th:text="#{text.cliente.email}">Email</label>
+						<label class="col-sm-2 col-form-label"
+							th:text="#{text.cliente.email}">Email</label>
 						<div class="col-sm-6">
 							<input type="text" th:field="*{email}" class="form-control"
 								th:errorclass="'form-control alert-danger'" /> <small
@@ -55,7 +62,8 @@
 					</div>
 
 					<div class="form-group row">
-						<label class="col-sm-2 col-form-label" th:text="#{text.cliente.createAt}">Fecha</label>
+						<label class="col-sm-2 col-form-label"
+							th:text="#{text.cliente.createAt}">Fecha</label>
 						<div class="col-sm-6">
 							<input type="text" class="form-control" th:field="*{createAt}"
 								th:errorclass="'form-control alert-danger'" /> <small
@@ -65,16 +73,27 @@
 					</div>
 
 					<div class="form-group row">
-						<label for="file" class="col-sm-2 col-form-label" th:text="#{text.cliente.foto}">Foto</label>
+						<label for="file" class="col-sm-2 col-form-label"
+							th:text="#{text.cliente.foto}">Foto</label>
 						<div class="col-sm-6">
-							<input type="file" name="file" class="form-control"/>
+							<input type="file" name="file" class="form-control" />
+						</div>
+					</div>
+
+					<div class="form-group row">
+					<label for="file" class="col-sm-2 col-form-label"></label>
+						<div class="col-sm-6">
+							<input type="file" class="custom-file-input"
+								id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+							<label class="custom-file-label" style="right:15px; left:15px;" for="inputGroupFile01" th:text="#{text.cliente.foto.elegir}">Choose
+								file</label>
 						</div>
 					</div>
 
 					<div class="form-group row">
 						<div class="col-sm-6">
 							<input type="submit" th:value="#{text.cliente.guardar}"
-								class="btn btn-success" />
+								class="btn btn-md btn-success px-3 mt-4" />
 						</div>
 					</div>
 

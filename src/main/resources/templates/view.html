@@ -13,8 +13,8 @@
 			<div class="card-header bg-dark text-white h4" th:text="${title}"></div>
 			<div class="card-body">
 
-				<img th:if="${#strings.length(client.photo) > 0}"
-					class="imt-thumbnail rounded float-left" style="max-width: 25%;"
+				<img th:if="${client.photo != null && #strings.length(client.photo) > 0}"
+					class="imt-thumbnail rounded float-left m-2" style="max-width: 25%;"
 					th:src="@{'/uploads/' + ${client.photo}}" th:alt="${client.photo}">
 
 				<ul class="list-group shadow-sm bg-white rounded">

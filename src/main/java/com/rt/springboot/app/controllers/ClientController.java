@@ -242,7 +242,7 @@ public class ClientController {
 			Client client = clientService.findOne(id);
 			clientService.delete(id);
 
-			flash.addFlashAttribute("success", messageSource.getMessage("text.cliente.flash.eliminiar.success", null, locale));
+			flash.addFlashAttribute("success", messageSource.getMessage("text.cliente.flash.eliminar.success", null, locale));
 
 			if (uploadFileService.delete(client.getPhoto())) {
 				String messageDeletePhoto = String.format(messageSource.getMessage("text.cliente.flash.foto.eliminar.success", null, locale), client.getPhoto());

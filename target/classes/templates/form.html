@@ -20,7 +20,8 @@
 
 				<div th:object="${client}" th:remove="tag">
 					<ul th:if="${#fields.hasErrors('*')}" class="alert alert-danger">
-						<li th:each="err: ${#fields.errors('*')}" th:text="${err}"></li>
+						<li th:each="err: ${#fields.errors('*')}" th:text="${err}"
+							class="ml-3"></li>
 					</ul>
 				</div>
 
@@ -76,19 +77,13 @@
 						<label for="file" class="col-sm-2 col-form-label"
 							th:text="#{text.cliente.foto}">Foto</label>
 						<div class="col-sm-6">
-							<input type="file" name="file" class="form-control" />
+							<input type="file" name="file"
+								class="form-control custom-file-input" id="filePhoto" /> <label
+								class="custom-file-label" style="right: 15px; left: 15px;"
+								th:text="#{text.cliente.foto.elegir}"> </label>
 						</div>
 					</div>
 
-					<div class="form-group row">
-					<label for="file" class="col-sm-2 col-form-label"></label>
-						<div class="col-sm-6">
-							<input type="file" class="custom-file-input"
-								id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
-							<label class="custom-file-label" style="right:15px; left:15px;" for="inputGroupFile01" th:text="#{text.cliente.foto.elegir}">Choose
-								file</label>
-						</div>
-					</div>
 
 					<div class="form-group row">
 						<div class="col-sm-6">
@@ -103,6 +98,12 @@
 	</div>
 
 	<footer th:replace="layout/layout :: footer"></footer>
+
+	<script>
+		$(document).on('change', '.custom-file-input', function(e) {
+			$(this).next('.custom-file-label').html(e.target.files[0].name);
+		})
+	</script>
 
 </body>
 

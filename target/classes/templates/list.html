@@ -14,11 +14,13 @@
 			<div class="card-body">
 				<h4 class="card-title">
 					<a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/form}"
-						class="btn btn-primary btn-xs mb-1">create client</a>
-					<a class="btn btn-success btn-sm float-right mx-2 mb-3"
-						th:href="@{'/list'(format=csv)}">CSV</a>
+						class="btn btn-primary btn-xs mb-1" th:text="#{text.cliente.crear}">create client</a>
 					<a class="btn btn-outline-success btn-sm float-right mx-2 mb-3"
 						th:href="@{'/list'(format=xml)}">XML</a>
+					<a class="btn btn-outline-secondary btn-sm float-right mx-2 mb-3"
+						th:href="@{'/list'(format=csv)}">CSV</a>
+						<a class="btn btn-outline-warning btn-sm float-right mx-2 mb-3"
+						th:href="@{'/list'(format=json)}">JSON</a>
 				</h4>
 				<table class="table table-striped table-bordered">
 					<thead class="thead-inverse">
@@ -28,9 +30,9 @@
 							<th th:text="#{text.cliente.apellido}">last name</th>
 							<th th:text="#{text.cliente.email}">email</th>
 							<th th:text="#{text.cliente.createAt}">date</th>
-							<th sec:authorize="hasRole('ROLE_ADMIN')">create invoice</th>
-							<th sec:authorize="hasRole('ROLE_ADMIN')">edit</th>
-							<th sec:authorize="hasRole('ROLE_ADMIN')">delete</th>
+							<th sec:authorize="hasRole('ROLE_ADMIN')" th:text="#{text.cliente.factura.crear}">create invoice</th>
+							<th sec:authorize="hasRole('ROLE_ADMIN')" th:text="#{text.cliente.factura.detalle}">edit</th>
+							<th sec:authorize="hasRole('ROLE_ADMIN')" th:text="#{text.cliente.factura.eliminar}">delete</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -45,16 +47,16 @@
 							<td sec:authorize="hasRole('ROLE_ADMIN')"><a
 									class="btn btn-success btn-xs"
 									th:href="@{'/invoice/form/' + ${client.id}}"
-									th:text="#{text.cliente.crear}"></a></td>
+									th:text="#{text.cliente.factura.crear}"></a></td>
 							<td sec:authorize="hasRole('ROLE_ADMIN')"><a
-									class="btn btn-primary btn-xs"
+									class="btn btn-warning btn-xs"
 									th:href="@{/form/} + ${client.id}"
 									th:text="#{text.cliente.editar}"></a></td>
 							<td sec:authorize="hasRole('ROLE_ADMIN')"><a
 									class="btn btn-danger btn-xs"
 									th:href="@{/delete/} + ${client.id}"
 									th:text="#{text.cliente.eliminar}"
-									onclick="return confirm('Estas seguro que quiere eliminar?');"></a>
+									th:attr="onclick='return confirm(\'' + #{text.cliente.eliminarOk} + '\');'"></a>
 							</td>
 						</tr>
 					</tbody>

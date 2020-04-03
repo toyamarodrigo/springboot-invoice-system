@@ -22,6 +22,8 @@ import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "clients")
 public class Client implements Serializable {
@@ -47,6 +49,7 @@ public class Client implements Serializable {
 	private Date createAt;
 
 	@OneToMany(mappedBy = "client", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JsonIgnore
 	private List<Invoice> invoices;
 
 	public Client() {

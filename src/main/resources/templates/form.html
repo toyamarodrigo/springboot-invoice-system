@@ -9,8 +9,12 @@
 
   <div class="container py-4">
     <div class="card bg-light">
-      <div class="card-header bg-info text-white" th:text="${title}"></div>
+      <div class="card-header bg-primary text-white" th:text="${title}"></div>
       <div class="card-body">
+      
+      					<a class="btn btn-secondary btn-sm mb-4"
+						th:href="@{'/list'}"
+						th:utext="#{text.global.volver}"></a>
 
         <div th:object="${client}" th:remove="tag">
           <ul th:if="${#fields.hasErrors('*')}" class="alert alert-danger">

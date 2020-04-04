@@ -162,7 +162,6 @@ public class ClientController {
 	}
 
 	/* ----- Edit Client ----- */
-
 	// PreAuthorize es lo mismo que @Secured("ROLE_ADMIN")
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping(value = "/form/{id}")

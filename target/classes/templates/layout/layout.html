@@ -5,6 +5,7 @@
 <head th:fragment="head">
 <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
 <link rel="stylesheet" th:href="@{/css/jquery-ui.min.css}">
+<link rel="stylesheet" th:href="@{/css/mystyle.css}">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -38,7 +39,7 @@
 				</ul>
 				<ul class="navbar-nav navbar-right">
 					<li sec:authorize="!isAuthenticated()">
-						<a class="btn btn-outline-primary" th:href="@{/login}"
+						<a class="btn btn-primary" th:href="@{/login}"
 							th:text="#{text.menu.signin}">Sign In</a>
 					</li>
 					<li sec:authorize="isAuthenticated()" class="dropdown">

@@ -13,11 +13,18 @@
 			<div class="card-header bg-dark text-white h4" th:text="${title}"></div>
 			<div class="card-body">
 
-				<img th:if="${client.photo != null && #strings.length(client.photo) > 0}"
-					class="imt-thumbnail rounded float-left m-2" style="max-width: 25%;"
-					th:src="@{'/uploads/' + ${client.photo}}" th:alt="${client.photo}">
+				<a th:href="@{'/list/'}" class="btn btn-light btn-sm mb-3">
+					<i class="fas fa-arrow-left"></i>
+					<span th:utext="' ' + #{text.global.volver}"></span>
+				</a>
 
-				<ul class="list-group shadow-sm bg-white rounded">
+				<img
+					th:if="${client.photo != null && #strings.length(client.photo) > 0}"
+					class="imt-thumbnail rounded float-left m-2 p-2"
+					style="max-width: 25%;" th:src="@{'/uploads/' + ${client.photo}}"
+					th:alt="${client.photo}">
+
+				<ul class="list-group shadow-sm rounded">
 					<li class="list-group-item"
 						th:text="#{text.cliente.nombre} + ': ' + ${client.firstName}"></li>
 					<li class="list-group-item"
@@ -40,9 +47,9 @@
 				<div th:if="${#lists.isEmpty(client.invoices)}"
 					class="alert alert-info my-4"
 					th:text="#{text.cliente.detalle.no.facturas} + ' ' + ${client.firstName} + ' ' + ${client.lastName} + '.'"></div>
-					
+
 				<table th:if="${not #lists.isEmpty(client.invoices)}"
-					class="table table-bordered table-striped my-4 shadow pt-3 mb-5 bg-white rounded">
+					class="table table-bordered table-striped my-4 shadow pt-3 bg-white rounded">
 					<thead class="thead-dark">
 						<tr>
 							<th th:text="#{text.cliente.factura.folio}">folio</th>
@@ -81,10 +88,7 @@
 					</tbody>
 				</table>
 
-				<a th:href="@{'/list/'}" class="btn btn-secondary btn-sm ml-2">
-					<i class="fas fa-arrow-left"></i>
-					<span th:utext="' ' + #{text.global.volver}"></span>
-				</a>
+
 			</div>
 		</div>
 	</div>

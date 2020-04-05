@@ -71,58 +71,31 @@ public class Invoice implements Serializable {
 		return total;
 	}
 
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	public String getObservation() {
-		return observation;
-	}
-
-	public void setObservation(String observation) {
-		this.observation = observation;
-	}
-
-	public Date getCreateAt() {
-		return createAt;
-	}
-
-	public void setCreateAt(Date createAt) {
-		this.createAt = createAt;
-	}
-
+	/*----- Getters  & Setters -----*/
+	public Long getId() { return id; }
+	
+	public void setId(Long id) { this.id = id; }
+	
+	public String getDescription() { return description; }
+	
+	public void setDescription(String description) { this.description = description; }
+	
+	public String getObservation() { return observation; }
+	
+	public void setObservation(String observation) { this.observation = observation; }
+	
+	public Date getCreateAt() { return createAt; }
+	
+	public void setCreateAt(Date createAt) { this.createAt = createAt; }
+	
 	@XmlTransient
-	public Client getClient() {
-		return client;
-	}
-
-	public void setClient(Client client) {
-		this.client = client;
-	}
-
-	public List<ItemInvoice> getItems() {
-		return items;
-	}
-
-	public void setItems(List<ItemInvoice> items) {
-		this.items = items;
-	}
-
-	public void addItemInvoice(ItemInvoice item) {
-		this.items.add(item);
-	}
-
+	public Client getClient() { return client; }
+	
+	public void setClient(Client client) { this.client = client; }
+	
+	public List<ItemInvoice> getItems() { return items; }
+	
+	public void setItems(List<ItemInvoice> items) { this.items = items; }
+	
+	public void addItemInvoice(ItemInvoice item) { this.items.add(item); }
 }

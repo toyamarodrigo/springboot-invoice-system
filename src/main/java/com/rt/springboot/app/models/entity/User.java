@@ -29,51 +29,30 @@ public class User implements Serializable {
 
 	private Boolean enabled;
 
+	private static final long serialVersionUID = -4639312987403040257L;
+
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "user_id")
 	private java.util.List<Role> authorities;
 
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getUsername() {
-		return username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public Boolean getEnabled() {
-		return enabled;
-	}
-
-	public void setEnabled(Boolean enabled) {
-		this.enabled = enabled;
-	}
-
-	public java.util.List<Role> getAuthorities() {
-		return authorities;
-	}
-
-	public void setAuthorities(java.util.List<Role> authorities) {
-		this.authorities = authorities;
-	}
-
-
-	private static final long serialVersionUID = -4639312987403040257L;
-
+	/*----- Getters & Setters -----*/
+	public Long getId() { return id; }
+	
+	public void setId(Long id) { this.id = id; }
+	
+	public String getUsername() {  return username; }
+	
+	public void setUsername(String username) { this.username = username; }
+	
+	public String getPassword() { return password; }
+	
+	public void setPassword(String password) { this.password = password; }
+	
+	public Boolean getEnabled() { return enabled; }
+	
+	public void setEnabled(Boolean enabled) { this.enabled = enabled; }
+	
+	public java.util.List<Role> getAuthorities() { return authorities; }
+	
+	public void setAuthorities(java.util.List<Role> authorities) { this.authorities = authorities; }
 }

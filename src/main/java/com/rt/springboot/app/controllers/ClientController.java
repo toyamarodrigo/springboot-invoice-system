@@ -3,6 +3,7 @@ package com.rt.springboot.app.controllers;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.Collection;
+import java.util.List;
 import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
@@ -33,6 +34,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
@@ -151,6 +153,12 @@ public class ClientController {
 		return "list";
 	}
 
+	/* ----- List Client API-REST ----- */
+	@GetMapping(value = "/api/list-rest")
+	public @ResponseBody List<Client> listRest() {
+		return clientService.findAll();
+	}
+	
 	/* ----- Create Client ----- */
 	@Secured("ROLE_ADMIN")
 	@GetMapping(value = "/form")

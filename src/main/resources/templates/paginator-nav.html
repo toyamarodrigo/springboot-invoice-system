@@ -1,33 +1,49 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="layout/layout :: head"></head>
+
 <body>
 
-    <nav th:fragment="paginator">
+	<nav th:fragment="paginator">
 
-        <ul class="pagination">
-          <li class="page-item" th:class="${page.first ? 'page-item disabled' : 'page-item'}">
-            <span class="page-link" th:if="${page.first}">First</span>
-            <a class="page-link" th:if="${!page.first}" th:href="@{${page.url}(page=0)}">First</a>
-          </li>
-          <li class="page-item" th:class="${!page.hasPrevious ? 'page-item disabled' : 'page-item'}">
-            <span class="page-link" th:if="${!page.hasPrevious}" >&laquo;</span>
-            <a class="page-link" th:if="${page.hasPrevious}" th:href="@{${page.url}(page=${page.actualPage-2})}">&laquo;</a>
-          </li>
-          <li th:each="item : ${page.pages}" class="page-item" th:class="${item.actual ? 'page-item active' : 'page-item'}">
-            <span class="page-link" th:if="${item.actual}" th:text="${item.number}"></span>
-            <a class="page-link" th:if="${!item.actual}" th:text="${item.number}" th:href="@{${page.url}(page=${item.number-1})}"></a>
-          </li>
-          <li class="page-item" th:class="${!page.hasNext ? 'page-item disabled' : 'page-item'}">
-            <span class="page-link" th:if="${!page.hasNext}">&raquo;</span>
-            <a class="page-link" th:if="${page.hasNext}" th:href="@{${page.url}(page=${page.actualPage})}">&raquo;</a>
-          </li>
-          <li class="page-item" th:class="${page.last ? 'page-item disabled' : 'page-item'}">
-            <span class="page-link" th:if="${page.last}">Last</span>
-            <a class="page-link" th:if="${!page.last}" th:href="@{${page.url}(page=${page.totalPages-1})}">Last</a>
-          </li>
-        </ul>
-    
-      </nav>
+		<ul class="pagination">
+			<li class="page-item"
+				th:class="${page.first ? 'page-item disabled' : 'page-item'}">
+				<span class="page-link" th:if="${page.first}" th:text="#{text.paginator.first}"></span>
+				<a class="page-link" th:if="${!page.first}"
+					th:href="@{${page.url}(page=0)}" th:text="#{text.paginator.first}"></a>
+			</li>
+			<li class="page-item"
+				th:class="${!page.hasPrevious ? 'page-item disabled' : 'page-item'}">
+				<span class="page-link" th:if="${!page.hasPrevious}" ><i class="fas fa-angle-left"></i></span>
+				<a class="page-link" th:if="${page.hasPrevious}"
+					th:href="@{${page.url}(page=${page.actualPage-2})}" ><i class="fas fa-angle-left"></i></a>
+			</li>
+			<li th:each="item : ${page.pages}" class="page-item"
+				th:class="${item.actual ? 'page-item active' : 'page-item'}">
+				<span class="page-link" th:if="${item.actual}"
+					th:text="${item.number}"></span>
+				<a class="page-link" th:if="${!item.actual}"
+					th:text="${item.number}"
+					th:href="@{${page.url}(page=${item.number-1})}"></a>
+			</li>
+			<li class="page-item"
+				th:class="${!page.hasNext ? 'page-item disabled' : 'page-item'}">
+				<span class="page-link" th:if="${!page.hasNext}" ><i class="fas fa-angle-right"></i></span>
+				<a class="page-link" th:if="${page.hasNext}"
+					th:href="@{${page.url}(page=${page.actualPage})}" ><i class="fas fa-angle-right"></i></a>
+			</li>
+			<li class="page-item"
+				th:class="${page.last ? 'page-item disabled' : 'page-item'}">
+				<span class="page-link" th:if="${page.last}" th:text="#{text.paginator.last}"></span>
+				<a class="page-link" th:if="${!page.last}"
+					th:href="@{${page.url}(page=${page.totalPages-1})}" th:text="#{text.paginator.last}"></a>
+			</li>
+		</ul>
+
+	</nav>
 
 </body>
 </html>

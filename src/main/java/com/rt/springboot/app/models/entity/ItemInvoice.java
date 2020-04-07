@@ -24,7 +24,7 @@ public class ItemInvoice implements Serializable {
 
 	private Integer amount;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "product_id")
 	private Product product;
 
@@ -33,33 +33,16 @@ public class ItemInvoice implements Serializable {
 		return amount.doubleValue() * product.getPrice();
 	}
 	
+	/*----- Getters & Setters -----*/
+	public Long getId() { return id; }
 	
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public Integer getAmount() {
-		return amount;
-	}
-
-	public void setAmount(Integer amount) {
-		this.amount = amount;
-	}
-
-
-	public Product getProduct() {
-		return product;
-	}
-
-
-	public void setProduct(Product product) {
-		this.product = product;
-	}
-
+	public void setId(Long id) { this.id = id; }
 	
-
+	public Integer getAmount() { return amount; }
+	
+	public void setAmount(Integer amount) { this.amount = amount; }
+	
+	public Product getProduct() { return product; }
+	
+	public void setProduct(Product product) { this.product = product; }
 }

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+	<script type="text/javascript" th:fragment="javascript">
+		$(document).ready(function() {
+
+			$("#search_product").autocomplete({
+				source : function(request, response) {
+					$.ajax({
+						url : "/invoice/load-products/" + request.term,
+						dataType : "json",
+						data : {
+							term : request.term
+						},
+						success : function(data) {
+							response($.map(data, function(item) {
+								return {
+									value : item.id,
+									label : item.name,
+									price : item.price,
+								};
+							}));
+						},
+					});
+				},
+				select : function(event, ui) {
+					//$("#search_product").val(ui.item.label);
+					
+					if(itemsHelper.hasProduct(ui.item.value)){
+						itemsHelper.incrementAmount(ui.item.value, ui.item.price);
+						return false;
+					}
+					
+					var line = $("#templateItemsInvoice").html();
+					
+					line = line.replace(/{ID}/g, ui.item.value);
+					line = line.replace(/{NAME}/g, ui.item.label);
+					line = line.replace(/{PRICE}/g, ui.item.price);
+					
+					$("#loadItemProducts tbody").append(line);
+					itemsHelper.calculateImport(ui.item.value, ui.item.price, 1);
+					
+					return false;
+				}
+			});
+			
+			$("form").submit(function(){
+				$("#templateItemsInvoice").remove();
+				return;
+			});
+			
+		});
+		
+		var itemsHelper = {
+				calculateImport: function(id, price, amount){
+					$("#total_import_" + id).html(parseInt(price) * parseInt(amount));
+					this.calculateFinalTotal();
+				},
+				
+				hasProduct: function(id){
+					
+					var result = false;
+					
+					$('input[name="item_id[]"]').each(function(){
+						if(parseInt(id) == parseInt($(this).val())) {
+							result = true;
+						}
+					});
+					
+					return result;
+				},
+				incrementAmount: function(id, price){
+					var amount = $("#amount_" + id).val() ? parseInt($("#amount_" + id).val()) : 0;
+					$("#amount_" + id).val(++amount);
+					this.calculateImport(id, price, amount);
+				},
+				deleteInvoiceLine: function(id){
+					$("#row_" + id).remove();
+					this.calculateFinalTotal();
+				},
+				calculateFinalTotal: function(){
+					var total = 0;
+					
+					$('span[id^="total_import_"]').each(function(){
+						
+						total += parseInt($(this).html());
+					
+					});
+					
+					$('#final_total').html(total);
+					
+				}
+		}
+		
+	</script>
+
+</body>
+</html>

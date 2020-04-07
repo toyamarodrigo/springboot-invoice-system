@@ -1,0 +1,32 @@
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head th:replace="layout/layout :: head"></head>
+
+<body>
+
+	<header th:replace="layout/layout :: header"></header>
+
+	<div class="container py-4">
+
+		<div class="card bg-danger text-white">
+
+			<div class="card-header" th:text="#{text.security.error.403.titulo}">Error: Acceso Denegado</div>
+			<div class="card-body">
+
+				<h5 class="card-title" th:utext="#{text.security.error.403.permiso(${#authentication.name})}">
+				</h5>
+				<a th:href="@{/list}" class="btn btn-outline-light" role="button" th:text="#{text.security.error.403.volver}">Ir
+					a Inicio</a>
+
+			</div>
+
+
+		</div>
+
+	</div>
+
+	<footer th:replace="layout/layout :: footer"></footer>
+
+</body>
+
+</html>

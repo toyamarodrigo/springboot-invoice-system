@@ -15,14 +15,14 @@
 
 				<h4 class="card-title">
 					<a th:href="@{'/view/' + ${invoice.client.id}}"
-						class="btn btn-secondary btn-sm">
+						class="btn btn-link btn-sm">
 						<i class="fas fa-arrow-left"></i>
 						<span th:utext="' ' + #{text.global.volver}"></span>
 					</a>
-					<a class="btn btn-danger btn-sm float-right mx-2"
-						th:href="@{'/invoice/view/' + ${invoice.id}(format=pdf)}"><i class="fas fa-file-pdf"></i> PDF</a>
-					<a class="btn btn-success btn-sm float-right mx-2"
-						th:href="@{'/invoice/view/' + ${invoice.id}(format=xlsx)}"><i class="fas fa-file-excel"></i> XLS</a>
+					<a class="btn btn-danger btn-md float-right mx-2"
+						th:href="@{'/invoice/view/' + ${invoice.id}(format=pdf)}"><i class="fas fa-file-pdf mr-2"></i> PDF</a>
+					<a class="btn btn-success btn-md float-right mx-2"
+						th:href="@{'/invoice/view/' + ${invoice.id}(format=xlsx)}"><i class="fas fa-file-excel mr-2"></i> XLS</a>
 				</h4>
 
 				<ul class="list-group my-4 shadow-sm bg-white rounded">
@@ -71,7 +71,7 @@
 				<h4 class="text-right pr-4">
 					<span th:text="#{text.factura.form.total}">Final Total </span>
 					:
-					<span th:text="${invoice.total}" class="badge badge-secondary"></span>
+					<span th:text="${invoice.total}" class="badge badge-dark"></span>
 				</h4>
 
 				<div class="card my-3 shadow-sm bg-white rounded" style="max-width: 40em;">
@@ -86,7 +86,7 @@
 				</div>
 
 				<a th:href="@{'/view/' + ${invoice.client.id}}"
-					class="btn btn-secondary btn-sm mt-4">
+					class="btn btn-link btn-sm mt-4">
 					<i class="fas fa-arrow-left"></i>
 					<span th:utext="' ' + #{text.global.volver}"></span>
 				</a>

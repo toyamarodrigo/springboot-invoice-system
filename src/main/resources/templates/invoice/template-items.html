@@ -8,12 +8,13 @@
 			<tr id="row_{ID}">
 				<td class="d-none"><input type="hidden" value="{ID}"
 					name="item_id[]" /></td>
-				<td>{NAME}</td>
-				<td>{PRICE}</td>
+				<td class="pl-3">{NAME}</td>
+				<td class="pl-3">{PRICE}</td>
 				<td><input type="number" value="1" name="amount[]"
 					id="amount_{ID}" class="form-control col-sm-4" onchange="itemsHelper.calculateImport({ID}, {PRICE}, this.value);" /></td>
 				<td><span id="total_import_{ID}">0</span></td>
-				<td><a href="#" class="btn btn-danger btn-sm" onclick="itemsHelper.deleteInvoiceLine({ID});">x</a></td>
+				<td class="d-flex justify-content-center"><a href="#" class="btn btn-danger btn-sm" onclick="itemsHelper.deleteInvoiceLine({ID});"><i
+								class="fas fa-trash trash-icon"></i></a></td>
 			</tr>
 		</tbody>
 

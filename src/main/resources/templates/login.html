@@ -39,9 +39,13 @@
 							<button
 								class="btn btn-lg btn-primary btn-block text-uppercase mt-4"
 								type="submit" th:text="#{text.login.boton}"></button>
-							<button
-								class="btn btn-lg btn-outline-primary btn-block text-uppercase mt-2"
-								type="submit" th:text="#{text.login.signup}"></button>
+
+							<form id="signupForm" th:action="@{/signup}" method="post">
+								<button
+									onclick="document.getElementById('signupForm').submit()" 
+									class="btn btn-lg btn-outline-primary btn-block text-uppercase mt-2"
+									type="submit" th:text="#{text.login.signup}"></button>
+							</form>
 
 						</form>
 					</div>
@@ -54,14 +58,13 @@
 	<footer th:replace="layout/layout :: footer"></footer>
 
 	<script type="text/javascript">
-
 		var input = $("input[type=text], input[type=password]");
 
 		input.bind('keyup focusin', function(element, i) {
 			$(this).siblings('label').addClass('active');
 			input.on("blur", function() {
 
-				if ($(this).val() !== "" ) {
+				if ($(this).val() !== "") {
 					$(this).next().addClass('active');
 				} else {
 					$(this).next().removeClass('active');
@@ -69,7 +72,6 @@
 
 			})
 		});
-
 	</script>
 
 </body>

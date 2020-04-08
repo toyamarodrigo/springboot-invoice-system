@@ -24,7 +24,7 @@
 									th:text="#{text.login.username}"></label>
 							</div>
 
-							<div class="md-form mb-5">
+							<div class="md-form mb-4">
 								<input type="password" name="password" id="password"
 									class="form-control" placeholder=" " required /> <label
 									for="password" th:text="#{text.login.password}"></label>
@@ -61,7 +61,7 @@
 			$(this).siblings('label').addClass('active');
 			input.on("blur", function() {
 
-				if ($(this).val() !== "") {
+				if ($(this).val() !== "" ) {
 					$(this).next().addClass('active');
 				} else {
 					$(this).next().removeClass('active');

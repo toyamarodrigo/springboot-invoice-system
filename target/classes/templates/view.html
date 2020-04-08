@@ -24,7 +24,7 @@
 					<div class="col-3">
 						<img
 							th:if="${client.photo != null && #strings.length(client.photo) > 0}"
-							class="imt-thumbnail rounded float-left m-2 p-2"
+							class="rounded float-left m-2 p-2"
 							style="max-width: 100%;" th:src="@{'/uploads/' + ${client.photo}}"
 							th:alt="${client.photo}">
 					</div>

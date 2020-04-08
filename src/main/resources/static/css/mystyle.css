@@ -4,6 +4,11 @@
 	--input-padding-y: .75rem;
 }
 
+html, body {
+	padding: 0;
+	margin: 0;
+}
+
 .card-signin {
 	border: 0.1;
 	border-radius: 1rem;
@@ -17,22 +22,6 @@
 
 .card-signin .card-body {
 	padding: 3.5rem 2rem;
-}
-
-.mi-form>label {
-	position: absolute !important;
-	top: 0 !important;
-	left: 0 !important;
-	display: block !important;
-	width: 100% !important;
-	margin-bottom: 0 !important;
-  	/* Override default `<label>` margin */
-  	line-height: 1.5 !important;
-  	color: #495057 !important;
-  	border: 1px solid transparent !important;
-  	border-radius: .25rem !important;
-  	transition: all .1s ease-in-out !important;
-	
 }
 
 .table td, .table th {
@@ -58,3 +47,47 @@
 	padding: 0.63rem 0 !important;
 }
 
+.md-form label.active {
+	transform: translateY(-18px) scale(0.8) !important;
+}
+
+.navbar .dropdown-menu form {
+	width: 10rem;
+}
+
+#footer {
+	position: absolute;
+   	width: 100%;
+}
+
+.correo:hover,
+.correo.focus {
+	color: #000 !important;
+}
+
+.github {
+	color: #000 !important;
+}
+
+.github:hover,
+.github:focus {
+  color: #e0e0e0  !important;
+}
+
+.linkedin {
+  color: #007BB5 !important;
+}
+
+.linkedin:hover,
+.linkedin:focus {
+  color: #33b5e5 !important;
+}
+
+.ig {
+color: #e1306c !important;	
+}
+
+.ig:hover,
+.ig:focus {
+  color: #f48fb1 !important;
+}

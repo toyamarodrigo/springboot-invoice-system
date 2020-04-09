@@ -16,7 +16,6 @@
 							th:text="#{text.login.titulo}">Sign In</h5>
 
 						<form class="form-signin" th:action="@{/login}" method="post">
-
 							<div class="md-form mb-5 ">
 								<input type="text" name="username" id="username"
 									class="form-control" placeholder=" " required /> <label
@@ -39,15 +38,14 @@
 							<button
 								class="btn btn-lg btn-primary btn-block text-uppercase mt-4"
 								type="submit" th:text="#{text.login.boton}"></button>
-
-							<form id="signupForm" th:action="@{/signup}" method="post">
-								<button
-									onclick="document.getElementById('signupForm').submit()" 
+								
+							<div class="form-group">
+								<a href="/" th:href="@{/signup}"
 									class="btn btn-lg btn-outline-primary btn-block text-uppercase mt-2"
-									type="submit" th:text="#{text.login.signup}"></button>
-							</form>
-
+									th:text="#{text.login.signup}"></a>
+							</div>
 						</form>
+
 					</div>
 				</div>
 			</div>

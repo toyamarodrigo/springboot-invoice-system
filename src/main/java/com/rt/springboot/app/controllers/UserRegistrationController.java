@@ -10,10 +10,11 @@ import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
+import org.springframework.validation.ValidationUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -40,18 +41,28 @@ public class UserRegistrationController {
 	@PostMapping("/signup")
 	public String registerUserAccount(
 			@ModelAttribute("user") @Valid User user, 
-			BindingResult result, Model model, Locale locale, RedirectAttributes flash, Principal principal) {
+			BindingResult result, Model model, Locale locale, 
+			RedirectAttributes flash, Principal principal, Errors errors) {
 
-		User existing = userService.findByUsername(user.getUsername());
+		// User existing = userService.findByUsername(user.getUsername());
 		
-		if (existing != null) {
-			model.addAttribute("warning", messageSource.getMessage("text.signup.existe", null, locale));
-		}
+		if (userService.findByUsername(user.getUsername()) != null ) {
+            errors.rejectValue("username", "text.signup.existe");
+            model.addAttribute("warning", messageSource.getMessage("text.signup.existe", null, locale));
+        }
+		
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "NotEmpty");
+        if (user.getPassword().length() < 8 || user.getPassword().length() > 32) {
+            errors.rejectValue("password", "text.signup.password.error.largo");
+            model.addAttribute("warning", messageSource.getMessage("text.signup.password.error.largo", null, locale));
+        }
 
-		if(result.hasErrors()) {
-			model.addAttribute("error", messageSource.getMessage("text.signup.error", null, locale));
-			return "signup";
-		}
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "username", "NotEmpty");
+        if (user.getUsername().length() < 6 || user.getUsername().length() > 32) {
+            errors.rejectValue("username", "text.signup.username.error.largo");
+            model.addAttribute("warning", messageSource.getMessage("text.signup.username.error.largo", null, locale));
+            return "signup";
+        }
 		
 		String flashMsg = "";
 		
@@ -61,7 +72,7 @@ public class UserRegistrationController {
 		
 		userService.save(user);
 		flash.addFlashAttribute("success", flashMsg);
-		return "redirect:/signup?success";
+		return "redirect:/login";
 	}
 
 }

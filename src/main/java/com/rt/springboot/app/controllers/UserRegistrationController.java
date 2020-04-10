@@ -11,7 +11,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
-import org.springframework.validation.ValidationUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -44,6 +43,7 @@ public class UserRegistrationController {
 			BindingResult result, Model model, Locale locale, 
 			RedirectAttributes flash, Principal principal, Errors errors) {
 		
+		// Checks if User already exist
 		if (userService.findByUsername(user.getUsername()) != null ) {
             model.addAttribute("warning", messageSource.getMessage("text.signup.existe", null, locale));
             System.out.println("usuario existe");

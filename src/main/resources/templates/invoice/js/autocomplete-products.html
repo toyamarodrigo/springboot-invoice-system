@@ -8,7 +8,7 @@
 			$("#search_product").autocomplete({
 				source : function(request, response) {
 					$.ajax({
-						url : "/invoice/load-products/" + request.term,
+						url : urlAjax + request.term,
 						dataType : "json",
 						data : {
 							term : request.term

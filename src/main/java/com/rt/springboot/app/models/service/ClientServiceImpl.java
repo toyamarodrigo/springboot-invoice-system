@@ -81,26 +81,29 @@ public class ClientServiceImpl implements IClientService {
 	public void saveInvoice(Invoice invoice) {
 		invoiceDao.save(invoice);
 	}
-
-	/*----- Method Find by ID (Invoice) -----*/
+	
+	/*----- Method Find Product by ID -----*/
 	@Override
 	@Transactional(readOnly = true)
 	public Product findProductById(Long id) {
 		return productDao.findById(id).orElse(null);
 	}
 
+	/*----- Method Find by ID (Invoice) -----*/
 	@Override
 	@Transactional(readOnly = true)
 	public Invoice findInvoiceById(Long id) {
 		return invoiceDao.findById(id).orElse(null);
 	}
 
+	/*----- Method Delete (Invoice) -----*/
 	@Override
 	@Transactional
 	public void deleteInvoice(Long id) {
 		invoiceDao.deleteById(id);	
 	}
 
+	/*----- Method Fetch Invoice with Client with Invoice -----*/
 	@Override
 	@Transactional(readOnly = true)
 	public Invoice fetchInvoiceByIdWithClientWithInvoiceItemWithProduct(Long id) {

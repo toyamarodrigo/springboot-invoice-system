@@ -16,7 +16,7 @@ import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 @Configuration
 public class MvcConfig implements WebMvcConfigurer {
 
-	// metodo para registrar controlador de vista
+	// Method for register view controller
 	public void addViewControllers(ViewControllerRegistry registry) {
 		registry.addViewController("/error_403").setViewName("error_403");
 	}

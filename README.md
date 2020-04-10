@@ -12,7 +12,7 @@
 ## form client
 * [x] change bootstrap to md bootstrap
 * [x] fix bootstrap classes
-* [x] add default avatar profile picture (everytime restart, removes every picture in 'uploads')
+* [ ] add default avatar profile picture (everytime restart, removes every picture in 'uploads')
 
 
 ## form invoice

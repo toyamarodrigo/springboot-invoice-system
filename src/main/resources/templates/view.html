@@ -24,9 +24,13 @@
 					<div class="col-3">
 						<img
 							th:if="${client.photo != null && #strings.length(client.photo) > 0}"
-							class="rounded float-left m-2 p-2"
-							style="max-width: 100%;" th:src="@{'/uploads/' + ${client.photo}}"
-							th:alt="${client.photo}">
+							class="rounded float-left m-2 p-2" style="max-width: 100%;"
+							th:src="@{'/uploads/' + ${client.photo}}"
+							th:alt="${client.photo}"> <img
+							th:unless="${client.photo != null && #strings.length(client.photo) > 0}"
+							style="max-width: 100%;" th:alt="${client.photo}"
+							th:src="@{'/uploads/' + avatar_default.jpg}"
+							class="rounded float-left m-2 p-2">
 					</div>
 					<div class="col-9 align-self-center">
 						<ul class="list-group shadow-sm rounded">

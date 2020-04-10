@@ -43,24 +43,10 @@ public class UserRegistrationController {
 			@ModelAttribute("user") @Valid User user, 
 			BindingResult result, Model model, Locale locale, 
 			RedirectAttributes flash, Principal principal, Errors errors) {
-
-		// User existing = userService.findByUsername(user.getUsername());
 		
 		if (userService.findByUsername(user.getUsername()) != null ) {
-            errors.rejectValue("username", "text.signup.existe");
             model.addAttribute("warning", messageSource.getMessage("text.signup.existe", null, locale));
-        }
-		
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "NotEmpty");
-        if (user.getPassword().length() < 8 || user.getPassword().length() > 32) {
-            errors.rejectValue("password", "text.signup.password.error.largo");
-            model.addAttribute("warning", messageSource.getMessage("text.signup.password.error.largo", null, locale));
-        }
-
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "username", "NotEmpty");
-        if (user.getUsername().length() < 6 || user.getUsername().length() > 32) {
-            errors.rejectValue("username", "text.signup.username.error.largo");
-            model.addAttribute("warning", messageSource.getMessage("text.signup.username.error.largo", null, locale));
+            System.out.println("usuario existe");
             return "signup";
         }
 		
@@ -72,7 +58,7 @@ public class UserRegistrationController {
 		
 		userService.save(user);
 		flash.addFlashAttribute("success", flashMsg);
-		return "redirect:/login";
+        return "redirect:/login";
 	}
 
 }

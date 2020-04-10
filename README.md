@@ -4,10 +4,10 @@
 * [x] update/check es_ES en_EN
 * [ ] delete unused classes
 * [ ] better readme
-* [ ] deploy
+* [ ] deploy heroku
 
 ## layout
-* [ ] fix footer always bottom 
+* [x] fix footer always bottom 
 
 ## form client
 * [x] change bootstrap to md bootstrap
@@ -29,7 +29,7 @@
 * [x] check repeat password
 * [x] fix validation usernames
 * [x] check return signup UserRegistrationController. all at the same time (length user password & duplicated user)
-* [ ] fix error/warning messages visual
+* [x] fix error/warning messages visual
 
 ## for later?
 * [ ] make it bootstrap responsive

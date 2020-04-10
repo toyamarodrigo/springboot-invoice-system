@@ -5,8 +5,11 @@
 }
 
 html, body{ 
-  min-height: 100vh;
-  overflow: auto;
+  min-height: 100%;
+}
+
+body {
+	height: 100vh;
 }
 
 .card-signin {
@@ -56,18 +59,23 @@ html, body{
 }
 
 #footer {
-	position: absolute;
    	width: 100%;
    	color: #fff;
+   	bottom: 0;
+   	height: 9rem;
 }
 
 #footer p {
 	margin: 0 !important;
 }
 
+.correo {
+	color: #000 !important;
+}
+
 .correo:hover,
 .correo.focus {
-	color: #000 !important;
+	color: #e0e0e0 !important;
 }
 
 .github {

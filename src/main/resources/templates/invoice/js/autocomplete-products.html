@@ -5,6 +5,7 @@
 	<script type="text/javascript" th:fragment="javascript">
 		$(document).ready(function() {
 
+			var urlAjax = $("#urlAjax").val();
 			$("#search_product").autocomplete({
 				source : function(request, response) {
 					$.ajax({

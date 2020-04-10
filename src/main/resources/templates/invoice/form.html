@@ -98,7 +98,7 @@
 	</div>
 
 	<footer th:replace="layout/layout :: footer"></footer>
-	<input th:action="@{'/urlAjax/'}" />
+	<input type="hidden" id="urlAjax" th:value="@{'/invoice/load-products'}" />
 	<script th:replace="invoice/js/autocomplete-products :: javascript"></script>
 
 </body>

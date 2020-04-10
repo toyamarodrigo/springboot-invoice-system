@@ -1,5 +1,4 @@
 # springboot-invoice-system
-<<<<<<< HEAD
 =======
 ## TO-DO
 
@@ -37,4 +36,3 @@
 * [ ] make it bootstrap responsive
 * [ ] format code, eclipse formater is not bueno
 * [ ] make Product dao service impl?
->>>>>>> dev

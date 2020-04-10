@@ -81,40 +81,6 @@
 
 	<footer th:replace="layout/layout :: footer"></footer>
 
-	<script type="text/javascript">
-	
-	/* Focus for input Material Bootstrap */
-		var input = $("input[type=text], input[type=password]");
-
-		input.bind('keyup focusin', function(element, i) {
-			$(this).siblings('label').addClass('active');
-			input.on("blur", function() {
-
-				if ($(this).val() !== "") {
-					$(this).next().addClass('active');
-				} else {
-					$(this).next().removeClass('active');
-				}
-
-			})
-		});
-
-		/* Check password match */
-		
-		var password = document.getElementById("password"), confirm_password = document.getElementById("confirmPassword");
-
-		function validatePassword(){
-		  if(password.value != confirm_password.value) {
-		    confirm_password.setCustomValidity("Passwords Don't Match");
-		  } else {
-		    confirm_password.setCustomValidity('');
-		  }
-		}
-		
-		password.onchange = validatePassword;
-		confirm_password.onkeyup = validatePassword;
-		
-	</script>
 
 </body>
 

@@ -44,10 +44,13 @@ public class InvoiceController {
 
 	private final Logger log = LoggerFactory.getLogger(getClass());
 
+	
+	/* ----- View Invoice[id] ----- */
 	@GetMapping("/view/{id}")
 	public String view(@PathVariable(value = "id") Long id, Model model, RedirectAttributes flash, Locale locale) {
 
-		Invoice invoice = clientService.fetchInvoiceByIdWithClientWithInvoiceItemWithProduct(id); //clientService.findInvoiceById(id);
+		Invoice invoice = clientService.fetchInvoiceByIdWithClientWithInvoiceItemWithProduct(id);
+		
 		if (invoice == null) {
 			flash.addAttribute("error", messageSource.getMessage("text.factura.flash.db.error", null, locale));
 			return "redirect:/list";
@@ -59,12 +62,13 @@ public class InvoiceController {
 		return "invoice/view";
 	}
 
-	// /invoice/form/{clientId}
+	/* ----- Create Invoice for Client[id] ----- */
 	@GetMapping("/form/{clientId}")
 	public String create(@PathVariable(value = "clientId") Long clientId, Map<String, Object> model,
 			RedirectAttributes flash, Locale locale) {
 
 		Client client = clientService.findOne(clientId);
+		
 		if (client == null) {
 			flash.addAttribute("error", messageSource.getMessage("text.cliente.flash.db.error", null, locale));
 			return "redirect:/list";
@@ -79,11 +83,13 @@ public class InvoiceController {
 		return "invoice/form";
 	}
 
+	/* ----- Autocomplete for Finding Products (autocomplete-products.js)----- */
 	@GetMapping(value = "/load-products/{term}", produces = { "application/json" })
 	public @ResponseBody List<Product> loadProducts(@PathVariable String term) {
 		return clientService.findByName(term);
 	}
 
+	/* ----- Save Invoice ----- */
 	@PostMapping("/form")
 	public String save(@Valid Invoice invoice, BindingResult result, Model model,
 			@RequestParam(name = "item_id[]", required = false) Long[] itemId,
@@ -119,7 +125,8 @@ public class InvoiceController {
 
 		return "redirect:/view/" + invoice.getClient().getId();
 	}
-
+	
+	/* ----- Delete Invoice ----- */
 	@GetMapping("/delete/{id}")
 	public String delete(@PathVariable(value = "id") Long id, RedirectAttributes flash, Locale locale) {
 		Invoice invoice = clientService.findInvoiceById(id);

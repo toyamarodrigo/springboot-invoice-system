@@ -7,7 +7,7 @@
 * [ ] deploy
 
 ## layout
-* [ ] ...
+* [ ] fix footer always bottom 
 
 ## form client
 * [x] change bootstrap to md bootstrap
@@ -32,4 +32,6 @@
 * [ ] fix error/warning messages visual
 
 ## for later?
+* [ ] make it bootstrap responsive
+* [ ] format code, eclipse formater is not bueno
 * [ ] make Product dao service impl?

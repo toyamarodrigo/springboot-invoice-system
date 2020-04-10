@@ -4,9 +4,9 @@
 	--input-padding-y: .75rem;
 }
 
-html, body {
-	padding: 0;
-	margin: 0;
+html, body{ 
+  min-height: 100vh;
+  overflow: auto;
 }
 
 .card-signin {
@@ -58,6 +58,11 @@ html, body {
 #footer {
 	position: absolute;
    	width: 100%;
+   	color: #fff;
+}
+
+#footer p {
+	margin: 0 !important;
 }
 
 .correo:hover,

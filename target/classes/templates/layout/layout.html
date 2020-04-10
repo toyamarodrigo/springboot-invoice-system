@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
-	xmlns:sec="http://www.thymeleaf.org/extra/spring-security">
+	xmlns:sec="http://www.thymeleaf.org/extra/spring-security"
+	class="h-100">
 
 <head th:fragment="head">
 <link rel="stylesheet"
@@ -17,7 +18,7 @@
 	title here</title>
 </head>
 
-<body>
+<body class="h-100">
 	<header th:fragment="header">
 		<nav class="navbar navbar-expand-md navbar-dark bg-dark">
 			<a class="navbar-brand" th:href="@{/}">Spring-boot Project</a>
@@ -58,10 +59,10 @@
 									th:text="#{text.menu.signout}">Sign Out</button>
 							</form>
 						</div>
-						
+
 					</li>
 				</ul>
-				
+
 				<ul class="navbar-nav navbar-right mx-4">
 					<li class="nav-item mx-1">
 						<a th:href="@{/locale(lang=es_ES)}"
@@ -72,26 +73,26 @@
 							class="btn btn-outline-success btn-md">EN</a>
 					</li>
 				</ul>
-				
+
 			</div>
 
 		</nav>
 
-		<div id="alert_placeholder" class="alert alert-success" th:if="${success != null}"
-			th:text="${success}"></div>
-		<div id="alert_placeholder" class="alert alert-danger" th:if="${error != null}"
-			th:text="${error}"></div>
-		<div id="alert_placeholder" class="alert alert-warning" th:if="${warning != null}"
-			th:text="${warning}"></div>
-		<div id="alert_placeholder" class="alert alert-info" th:if="${info != null}"
-			th:text="${info}"></div>
+		<div id="alert_placeholder" class="alert alert-success"
+			th:if="${success != null}" th:text="${success}"></div>
+		<div id="alert_placeholder" class="alert alert-danger"
+			th:if="${error != null}" th:text="${error}"></div>
+		<div id="alert_placeholder" class="alert alert-warning"
+			th:if="${warning != null}" th:text="${warning}"></div>
+		<div id="alert_placeholder" class="alert alert-info"
+			th:if="${info != null}" th:text="${info}"></div>
 
 	</header>
 
 	<div class="container"></div>
 
 	<footer th:fragment="footer"
-		class="page-footer font-small elegant-color-dark pt-2 border border-0"
+		class="footer mt-auto font-small elegant-color-dark pt-2 border border-0"
 		id="footer">
 
 		<div class="container-fluid text-center text-md-left">
@@ -116,16 +117,15 @@
 							<i
 								class="correo far fa-envelope fa-lg white-text mr-md-5 mr-3 fa-2x"></i>
 						</a>
-						<a target="_blank"
-							href="https://www.linkedin.com/in/rodrigo-toyama-1861b1154/">
+						<a target="_blank" href="https://bit.ly/3a4hnba">
 							<i
 								class="linkedin fab fa-linkedin-in fa-lg white-text mr-md-5 mr-3 fa-2x"></i>
 						</a>
-						<a target="_blank" href="https://www.instagram.com/rt.codes/">
+						<a target="_blank" href="http://bit.ly/2qIGFup">
 							<i
 								class="ig fab fa-instagram fa-lg white-text mr-md-5 mr-3 fa-2x"></i>
 						</a>
-						<a target="_blank" href="https://github.com/toyamarodrigo">
+						<a target="_blank" href="http://bit.ly/2m7vA3t">
 							<i
 								class="github fab fa-github fa-lg white-text mr-md-5 mr-3 fa-2x"></i>
 						</a>
@@ -133,19 +133,15 @@
 				</div>
 			</div>
 		</div>
-		
-		<div class="flex-center footer-copyright text-center py-3">
-			<p th:utext="#{text.footer.powered}" class="">
-				Powered by
-				<a href="https://projects.spring.io/spring-boot">Spring Boot</a>
-				y
-				<a href="http://www.thymeleaf.org">Thymeleaf</a>
-			</p>
-			<p>
-				© 2020 Copyright:
-				<a href="https://mdbootstrap.com/">MDBootstrap.com</a>
-			</p>
-		</div>
+
+			<div class="justify-content-center py-2 copyright align-items-center ">
+				<p th:utext="#{text.footer.powered}" class="text-center py-1">
+					Powered by
+					<a href="https://projects.spring.io/spring-boot">Spring Boot</a>
+					y
+					<a href="http://www.thymeleaf.org">Thymeleaf</a>
+				</p>
+			</div>
 
 		<script th:src="@{/js/jquery-3.4.1.min.js}"></script>
 		<script th:src="@{/js/popper.min.js}"></script>
@@ -153,15 +149,47 @@
 		<script th:src="@{/js/mdb.min.js}"></script>
 		<script th:src="@{/js/jquery-ui.min.js}"></script>
 		<script th:src="@{/js/all.min.js}"></script>
-		
+
 		<script type="text/javascript">
-		
-		setTimeout(function() {
-		    $('#alert_placeholder').fadeOut('fast');
-		}, 10000);
-		
+			setTimeout(function() {
+				$('#alert_placeholder').fadeOut('fast');
+			}, 10000);
 		</script>
-		
+
+		<script type="text/javascript">
+			/* Focus for input Material Bootstrap */
+			var input = $("input[type=text], input[type=password]");
+
+			input.bind('keyup focusin', function(element, i) {
+				$(this).siblings('label').addClass('active');
+				input.on("blur", function() {
+
+					if ($(this).val() !== "") {
+						$(this).next().addClass('active');
+					} else {
+						$(this).next().removeClass('active');
+					}
+
+				})
+			});
+
+			/* Check password match */
+
+			var password = document.getElementById("password"), confirm_password = document
+					.getElementById("confirmPassword");
+
+			function validatePassword() {
+				if (password.value != confirm_password.value) {
+					confirm_password.setCustomValidity("Passwords Don't Match");
+				} else {
+					confirm_password.setCustomValidity('');
+				}
+			}
+
+			password.onchange = validatePassword;
+			confirm_password.onkeyup = validatePassword;
+		</script>
+
 	</footer>
 
 </body>

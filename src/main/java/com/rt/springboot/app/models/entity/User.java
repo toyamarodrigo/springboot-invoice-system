@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "users")
@@ -26,6 +27,9 @@ public class User implements Serializable {
 
 	@Column(length = 60)
 	private String password;
+	
+	@Transient
+	private String confirmPassword;
 
 	private Boolean enabled;
 
@@ -48,6 +52,10 @@ public class User implements Serializable {
 	
 	public void setPassword(String password) { this.password = password; }
 	
+	public String getConfirmPassword() { return confirmPassword; }
+
+	public void setConfirmPassword(String confirmPassword) { this.confirmPassword = confirmPassword; }
+
 	public Boolean getEnabled() { return enabled; }
 	
 	public void setEnabled(Boolean enabled) { this.enabled = enabled; }

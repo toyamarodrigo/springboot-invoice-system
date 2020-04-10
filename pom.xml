@@ -9,10 +9,10 @@
 		<version>2.2.5.RELEASE</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.rt.springboot.datajpa.app</groupId>
-	<artifactId>springboot-data-jpa</artifactId>
+	<groupId>com.rt.springboot.app</groupId>
+	<artifactId>springboot-invoice-system</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>springboot-data-jpa</name>
+	<name>springboot-invoice-system</name>
 	<description>Demo project for Spring Boot</description>
 
 	<properties>

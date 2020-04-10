@@ -59,7 +59,7 @@ public class ClientController {
 	private MessageSource messageSource;
 
 	/* ----- View Photo ----- */
-	// .+ = retorna el nombre del archico pero sin formato
+	// '.+' = returns the file name without format
 	@PreAuthorize("hasRole('ROLE_USER')")
 	@GetMapping(value = "/uploads/{filename:.+}")
 	public ResponseEntity<Resource> viewPhoto(@PathVariable String filename) {
@@ -69,7 +69,6 @@ public class ClientController {
 		try {
 			resource = uploadFileService.load(filename);
 		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -100,13 +99,13 @@ public class ClientController {
 	public String list(@RequestParam(name = "page", defaultValue = "0") int page, Model model,
 			Authentication authentication, HttpServletRequest request, Locale locale) {
 
-		// 2 formas de ver Roles
-		// Forma 1
+		// 2 Ways of seeing Roles
+		// 1st Way
 		if (authentication != null) {
 			logger.info("Hola usuario autenticado, tu username es: " + authentication.getName());
 		}
 
-		// Forma 2 (estatica)
+		// 2nd Way(static)
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		if (auth != null) {
 			logger.info(
@@ -114,15 +113,15 @@ public class ClientController {
 			+ auth.getName());
 		}
 
-		// 3 formas de asignar ROLES
-		// Forma 1
+		// 3 Ways of assigning Roles
+		// 1st Way
 		if (hasRole("ROLE_ADMIN")) {
 			logger.info("Hola " + auth.getName() + " tienes acceso");
 		} else {
 			logger.info("Hola " + auth.getName() + " NO tienes acceso");
 		}
 
-		// Forma 2
+		// 2nd Way
 		SecurityContextHolderAwareRequestWrapper securityContext = new SecurityContextHolderAwareRequestWrapper(request,
 				"ROLE_");
 
@@ -134,7 +133,7 @@ public class ClientController {
 					+ " NO tienes acceso");
 		}
 
-		// Forma 3
+		// 3rd Way
 		if (request.isUserInRole("ROLE_ADMIN")) {
 			logger.info("Forma usando HttpServletRequest: Hola " + auth.getName() + " tienes acceso");
 		} else {
@@ -163,15 +162,17 @@ public class ClientController {
 	}
 
 	/* ----- Edit Client ----- */
-	// PreAuthorize es lo mismo que @Secured("ROLE_ADMIN")
+	// PreAuthorize <=> @Secured("ROLE_ADMIN")
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping(value = "/form/{id}")
 	public String update(@PathVariable(value = "id") Long id, RedirectAttributes flash, Model model, Locale locale) {
 
 		Client client = null;
-
+		
+		// If Customer exist, find
 		if (id > 0) {
 			client = clientService.findOne(id);
+			// If not exist, error
 			if (client == null) {
 				flash.addFlashAttribute("error", messageSource.getMessage("text.cliente.flash.db.error", null, locale));
 				return "redirect:/list";
@@ -222,7 +223,7 @@ public class ClientController {
 			client.setPhoto(uniqueFilename);
 
 		}
-
+		
 		String flashMsg = (client.getId() != null)
 				? messageSource.getMessage("text.cliente.flash.editar.success", null, locale)
 				: messageSource.getMessage("text.cliente.flash.crear.success", null, locale);
@@ -256,29 +257,21 @@ public class ClientController {
 
 		SecurityContext context = SecurityContextHolder.getContext();
 
-		if (context == null) {
-			return false;
-		}
-
+		if (context == null) { return false; }
 		Authentication auth = context.getAuthentication();
 
-		if (auth == null) {
-			return false;
-		}
-
+		if (auth == null) { return false; }
 		Collection<? extends GrantedAuthority> authorities = auth.getAuthorities();
 
-		/*
-		 * for(GrantedAuthority authority : authorities) {
-		 * if(role.equals(authority.getAuthority())) { logger.info("Hola " +
-		 * auth.getName() + " tu role es: " + authority.getAuthority()); return true; }
-		 * }
-		 * 
-		 * return false;
-		 */
+//		Check user authority
+//		 for(GrantedAuthority authority : authorities) {
+//		 if(role.equals(authority.getAuthority())) { logger.info("Hola " +
+//		 auth.getName() + " tu role es: " + authority.getAuthority()); return true; }
+//		 }
+//		 
+//		 return false;
 
-		// contains(GrantedAuthority) devuelve true o false si contiene o no el elemento
-		// de la coleccion
+		// contains(GrantedAuthority) returns true or false if has the collection element or not
 		return authorities.contains(new SimpleGrantedAuthority(role));
 
 	}

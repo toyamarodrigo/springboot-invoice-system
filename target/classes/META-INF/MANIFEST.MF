@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Implementation-Title: springboot-data-jpa
+Implementation-Title: springboot-invoice-system
 Implementation-Version: 0.0.1-SNAPSHOT
 Build-Jdk-Spec: 1.8
 Created-By: Maven Integration for Eclipse

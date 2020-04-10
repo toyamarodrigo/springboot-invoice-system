@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head th:replace="layout/layout :: head"></head>
+
+<body>
+
+	<header th:replace="layout/layout :: header"></header>
+
+	<div class="container py-4">
+		<div class="row">
+			<div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+				<div class="card card-signin my-3 shadow p-3 mb-5 bg-white">
+					<div class="card-body">
+						<h5 class="card-title text-center mb-5"
+							th:text="#{text.signup.registrar.titulo}">Sign In</h5>
+
+						<form th:action="@{/signup}" th:object="${user}" method="post">
+
+							<div class="md-form mb-5"
+								th:classappend="${#fields.hasErrors('username')}? 'has-error':''">
+								<input type="text" th:field="*{username}" name="username"
+									id="username" class="form-control has-error" placeholder=" " minlength="6" required />
+								<label for="username" class="control-label"
+									th:text="#{text.login.username}"> </label>
+							</div>
+
+							<div class="md-form mb-5"
+								th:classappend="${#fields.hasErrors('password')}? 'has-error':''">
+								<input type="password" th:field="*{password}" name="password"
+									id="password" class="form-control" placeholder=" "minlength="5" required />
+								<label for="password" class="control-label"
+									th:text="#{text.login.password}"> </label>
+							</div>
+
+							<div class="md-form mb-4"
+								th:classappend="${#fields.hasErrors('confirmPassword')}? 'has-error':''">
+								<input type="password" th:field="*{confirmPassword}"
+									name="password" id="confirmPassword" class="form-control"
+									placeholder=" " required /> <label for="confirmPassword"
+									class="control-label"
+									th:text="#{text.signup.registrar.repetir.password}"> </label>
+							</div>
+
+							<div class="custom-control custom-checkbox ml-2 mb-4"
+								th:classappend="${#fields.hasErrors('enabled')}? 'has-error':''">
+
+								<input type="checkbox" class="custom-control-input mr-3"
+									id="enabled" th:field="*{enabled}" required /> <label
+									class="custom-control-label" for="enabled">
+									<p class="font-small">
+										I agree with the
+										<a href="#">terms and conditions</a>
+										for Registration.
+									</p>
+
+								</label>
+ 
+							</div>
+
+							<button
+								class="btn btn-lg btn-indigo btn-block text-uppercase mt-4 mb-4"
+								type="submit" th:text="#{text.login.boton}"></button>
+
+							<div class="text-center">
+								<span class="text-center">
+									Already registered?
+									<a href="/" th:href="@{/login}">Login here</a>
+								</span>
+							</div>
+
+						</form>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+	<footer th:replace="layout/layout :: footer"></footer>
+
+
+</body>
+
+</html>

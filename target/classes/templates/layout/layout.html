@@ -1,9 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
-	xmlns:sec="http://www.thymeleaf.org/extra/spring-security">
+	xmlns:sec="http://www.thymeleaf.org/extra/spring-security"
+	class="h-100">
 
 <head th:fragment="head">
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
 <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+<link rel="stylesheet" th:href="@{/css/mdb.min.css}">
 <link rel="stylesheet" th:href="@{/css/jquery-ui.min.css}">
 <link rel="stylesheet" th:href="@{/css/mystyle.css}">
 <meta charset="UTF-8">
@@ -14,38 +18,37 @@
 	title here</title>
 </head>
 
-<body>
+<body class="h-100">
 	<header th:fragment="header">
 		<nav class="navbar navbar-expand-md navbar-dark bg-dark">
-			<a class="navbar-brand" th:href="@{/}">Spring boot</a>
+			<a class="navbar-brand" th:href="@{/}">Spring-boot Project</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
 				aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
 			<div class="collapse navbar-collapse">
+
 				<ul class="navbar-nav mr-auto">
-					<li class="nav-item active px-3">
-						<a class="nav-link" th:href="@{/}">
-							<i class="fas fa-home"></i>
-							<span th:text="' ' + #{text.menu.home}"></span>
-						</a>
-					</li>
-					<li class="nav-item px-3">
+					<li class="nav-item px-3 btn-sm">
 						<a class="nav-link" th:href="@{/list}">
-							<i class="fas fa-users"></i>
+							<i class="fas fa-users mr-1"></i>
 							<span th:text="' ' + #{text.menu.customer}"></span>
 						</a>
 					</li>
 				</ul>
+
 				<ul class="navbar-nav navbar-right">
+
 					<li sec:authorize="!isAuthenticated()">
-						<a class="btn btn-primary" th:href="@{/login}"
+						<a class="btn btn-primary btn-md" th:href="@{/login}"
 							th:text="#{text.menu.signin}">Sign In</a>
 					</li>
+
 					<li sec:authorize="isAuthenticated()" class="dropdown">
-						<a class="btn btn-primary dropdown-toggle" href="#" role="button"
-							id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
-							aria-expanded="false">
+
+						<a class="btn btn-primary dropdown-toggle btn-md" href="#"
+							role="button" id="dropdownMenuLink" data-toggle="dropdown"
+							aria-haspopup="true" aria-expanded="false">
 							<span sec:authentication="name"></span>
 						</a>
 
@@ -54,64 +57,150 @@
 								<button onclick="document.getElementById('logoutForm').submit()"
 									type="submit" class="dropdown-item"
 									th:text="#{text.menu.signout}">Sign Out</button>
-								<input type="hidden" th:name="${_csrf.parameterName}"
-									th:value=${_csrf.token}>
 							</form>
 						</div>
+
 					</li>
 				</ul>
+
 				<ul class="navbar-nav navbar-right mx-4">
 					<li class="nav-item mx-1">
 						<a th:href="@{/locale(lang=es_ES)}"
-							class="btn btn-outline-success">ES</a>
+							class="btn btn-outline-success btn-md">ES</a>
 					</li>
 					<li class="nav-item mx-1">
 						<a th:href="@{/locale(lang=en_EN)}"
-							class="btn btn-outline-success">EN</a>
+							class="btn btn-outline-success btn-md">EN</a>
 					</li>
-
 				</ul>
+
 			</div>
 
 		</nav>
 
-		<div class="alert alert-success" th:if="${success != null}"
-			th:text="${success}"></div>
-		<div class="alert alert-danger" th:if="${error != null}"
-			th:text="${error}"></div>
-		<div class="alert alert-warning" th:if="${warning != null}"
-			th:text="${warning}"></div>
-		<div class="alert alert-info" th:if="${info != null}"
-			th:text="${info}"></div>
+		<div id="alert_placeholder" class="alert alert-success"
+			th:if="${success != null}" th:text="${success}"></div>
+		<div id="alert_placeholder" class="alert alert-danger"
+			th:if="${error != null}" th:text="${error}"></div>
+		<div id="alert_placeholder" class="alert alert-warning"
+			th:if="${warning != null}" th:text="${warning}"></div>
+		<div id="alert_placeholder" class="alert alert-info"
+			th:if="${info != null}" th:text="${info}"></div>
 
 	</header>
 
 	<div class="container"></div>
 
-	<footer th:fragment="footer" class="container">
-		<hr />
+	<footer th:fragment="footer"
+		class="footer mt-auto font-small pt-2 border border-0"
+		id="footer">
 
-		<p sec:authorize="isAuthenticated()">
-			<span th:text="#{text.footer.user}"> Usuario logeado: </span>
-			<span sec:authentication="name"></span>
-			<span th:text="#{text.footer.roles}"> | Roles:</span>
-			<span sec:authentication="principal.authorities"></span>
-		</p>
+		<div class="container-fluid text-center text-md-left">
 
-		<p th:utext="#{text.footer.powered}">
-			Powered by
-			<a href="https://projects.spring.io/spring-boot">Spring Boot</a>
-			y
-			<a href="http://www.thymeleaf.org">Thymeleaf</a>
-			.
-		</p>
+			<div class="col-md-12 mt-md-0 mt-3">
+				<div class="mb-4 flex-center">
+					<p sec:authorize="isAuthenticated()" class="text-center text-dark">
+						<span th:text="#{text.footer.user}"> Usuario logeado: </span>
+						<span sec:authentication="name"></span>
+						<span th:text="#{text.footer.roles}"> | Roles:</span>
+						<span sec:authentication="principal.authorities"></span>
+					</p>
+				</div>
+			</div>
+
+			<hr class="clearfix w-100 d-md-none pb-3">
+
+			<div class="col-md-12 mb-md-0 mb-3">
+				<div class="mb-2">
+					<ul class="d-flex flex-row justify-content-center" style="list-style-type: none;">
+						<li>
+							<a href="http://bit.ly/37LqGvU" class="">
+								<i
+									class="correo fas fa-globe fa-lg white-text mr-md-5 mr-3 fa-2x"></i>
+							</a>
+						</li>
+						<li>
+							<a target="_blank" href="https://bit.ly/3a4hnba">
+								<i
+									class="linkedin fab fa-linkedin-in fa-lg white-text mr-md-5 mr-3 fa-2x"></i>
+							</a>
+						</li>
+						<li>
+							<a target="_blank" href="http://bit.ly/2qIGFup">
+								<i
+									class="ig fab fa-instagram fa-lg white-text mr-md-5 mr-3 fa-2x"></i>
+							</a>
+						</li>
+						<li>
+							<a target="_blank" href="http://bit.ly/2m7vA3t">
+								<i
+									class="github fab fa-github fa-lg white-text mr-md-5 mr-3 fa-2x"></i>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+		</div>
+
+		<div class="justify-content-center py-2 copyright align-items-center ">
+			<p th:utext="#{text.footer.powered}" class="text-center py-1 text-dark">
+				Powered by
+				<a href="https://projects.spring.io/spring-boot">Spring Boot</a>
+				y
+				<a href="http://www.thymeleaf.org">Thymeleaf</a>
+			</p>
+		</div>
 
 		<script th:src="@{/js/jquery-3.4.1.min.js}"></script>
 		<script th:src="@{/js/popper.min.js}"></script>
 		<script th:src="@{/js/bootstrap.min.js}"></script>
+		<script th:src="@{/js/mdb.min.js}"></script>
 		<script th:src="@{/js/jquery-ui.min.js}"></script>
 		<script th:src="@{/js/all.min.js}"></script>
+
+		<script type="text/javascript">
+			setTimeout(function() {
+				$('#alert_placeholder').fadeOut('fast');
+			}, 10000);
+		</script>
+
+		<script type="text/javascript">
+			/* Focus for input Material Bootstrap */
+			var input = $("input[type=text], input[type=password]");
+
+			input.bind('keyup focusin', function(element, i) {
+				$(this).siblings('label').addClass('active');
+				input.on("blur", function() {
+
+					if ($(this).val() !== "") {
+						$(this).next().addClass('active');
+					} else {
+						$(this).next().removeClass('active');
+					}
+
+				})
+			});
+
+			/* Check password match */
+
+			var password = document.getElementById("password"), confirm_password = document
+					.getElementById("confirmPassword");
+
+			function validatePassword() {
+				if (password.value != confirm_password.value) {
+					confirm_password.setCustomValidity("Passwords Don't Match");
+				} else {
+					confirm_password.setCustomValidity('');
+				}
+			}
+
+			password.onchange = validatePassword;
+			confirm_password.onkeyup = validatePassword;
+		</script>
+
 	</footer>
+
 </body>
 
 </html>

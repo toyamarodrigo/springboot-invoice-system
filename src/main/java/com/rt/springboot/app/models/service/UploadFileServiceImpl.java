@@ -20,7 +20,6 @@ import org.springframework.web.multipart.MultipartFile;
 public class UploadFileServiceImpl implements IUploadFileService {
 
 	private final Logger log = LoggerFactory.getLogger(getClass());
-
 	private final static String UPLOADS_FOLDER = "uploads";
 
 	@Override

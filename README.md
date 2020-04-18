@@ -1,38 +1,28 @@
-# springboot-invoice-system
-=======
-## TO-DO
+# Invoice Management System
 
-* [x] update/check es_ES en_EN
-* [ ] delete unused classes
-* [ ] better readme
-* [ ] deploy heroku
+design for Desktop (not responsive yet).
 
-## layout
-* [x] fix footer always bottom 
+## Preview & How to access
 
-## form client
-* [x] change bootstrap to md bootstrap
-* [x] fix bootstrap classes
-* [ ] add default avatar profile picture (everytime restart, removes every picture in 'uploads')
+Heroku:
+[https://bit.ly/rt-invoice](https://bit.ly/rt-invoice)
 
+* At first glance you have "no-user" role view.
+* You can create a User by Signing up (You'll have User-Role privileges)
+* Or access as admin to check the app out
+  * u: admin
+  * p: 12345
 
-## form invoice
-* [x] change bootstrap to md bootstrap
-* [x] fix bootstrap classes
+* If Signing-up does not work try (User-Role privileges): 
+  * u: rodri
+  * p: 12345
 
 
-## login
-* [x] add signup button
-* [x] checkbox remember me
+## Screenshots
 
-## signup
-* [x] UserService, Dao, Impl
-* [x] check repeat password
-* [x] fix validation usernames
-* [x] check return signup UserRegistrationController. all at the same time (length user password & duplicated user)
-* [x] fix error/warning messages visual
 
-## for later?
-* [ ] make it bootstrap responsive
-* [ ] format code, eclipse formater is not bueno
-* [ ] make Product dao service impl?
+Login/Signup page: ![Login Page](https://i.imgur.com/Pk7XSr9.png)
+
+Client list (admin view): ![Clients page](https://i.imgur.com/RJMUByc.png)
+
+Invoice details: ![Invoice Details page](https://i.imgur.com/natsqkj.png)

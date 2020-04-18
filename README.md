@@ -2,7 +2,7 @@
 
 design for Desktop (not responsive yet).
 
-## Preview & How to access
+## How to access
 
 Heroku:
 [https://bit.ly/rt-invoice](https://bit.ly/rt-invoice)

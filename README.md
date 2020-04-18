@@ -2,6 +2,9 @@
 
 design for Desktop (not responsive yet).
 
+Technologies used: HTML, CSS, [Material Bootstrap](https://mdbootstrap.com/), JS, [Thymeleaf](https://www.thymeleaf.org/), [JQuery](https://jquery.com/), Java, [Springboot](https://spring.io/), [Hibernate](https://hibernate.org/), SQL.
+
+
 ## How to access
 
 Heroku:

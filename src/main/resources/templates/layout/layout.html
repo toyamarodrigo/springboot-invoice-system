@@ -22,11 +22,14 @@
 	<header th:fragment="header">
 		<nav class="navbar navbar-expand-md navbar-dark bg-dark">
 			<a class="navbar-brand" th:href="@{/}">Spring-boot Project</a>
+
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#navbar" aria-controls="navbar" aria-expanded="false"
 				aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
-			<div class="collapse navbar-collapse">
+
+			<div id="navbar" class="collapse navbar-collapse text-center">
 
 				<ul class="navbar-nav mr-auto">
 					<li class="nav-item px-3 btn-sm">
@@ -92,8 +95,7 @@
 	<div class="container"></div>
 
 	<footer th:fragment="footer"
-		class="footer mt-auto font-small pt-2 border border-0"
-		id="footer">
+		class="footer mt-auto font-small pt-2 border border-0" id="footer">
 
 		<div class="container-fluid text-center text-md-left">
 
@@ -112,7 +114,8 @@
 
 			<div class="col-md-12 mb-md-0 mb-3">
 				<div class="mb-2">
-					<ul class="d-flex flex-row justify-content-center" style="list-style-type: none;">
+					<ul class="d-flex flex-row justify-content-center"
+						style="list-style-type: none;">
 						<li>
 							<a href="http://bit.ly/rt-web-portfolio" class="">
 								<i
@@ -144,7 +147,8 @@
 		</div>
 
 		<div class="justify-content-center py-2 copyright align-items-center ">
-			<p th:utext="#{text.footer.powered}" class="text-center py-1 text-dark">
+			<p th:utext="#{text.footer.powered}"
+				class="text-center py-1 text-dark">
 				Powered by
 				<a href="https://projects.spring.io/spring-boot">Spring Boot</a>
 				y

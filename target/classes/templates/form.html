@@ -15,7 +15,7 @@
 			<div class="card-body d-flex justify-content-center">
 
 				<form th:action="@{/form}" th:object="${client}" method="post"
-					enctype="multipart/form-data" class="col-8">
+					enctype="multipart/form-data" class="col-lg-8 col-sm-12">
 
 					<div class="form-group row mb-0">
 						<a class="btn btn-sm mb-4 btn-link" th:href="@{'/list'}">
@@ -83,15 +83,14 @@
 						</div>
 					</div>
 
-					<div class="form-group row">
-						<div class="col-sm-2">
-							<input type="submit" th:value="#{text.cliente.guardar}"
-								class="btn btn-md btn-success mt-4" />
+					<div class="form-group row justify-content-around align-items-center">
+						<div class="col-6 col-lg-2">
+							<button type="submit" th:text="#{text.cliente.guardar}"
+								class="btn btn-md btn-success mt-4"></button>
 						</div>
-
-						<div class="col-sm-2">
-							<input type="submit" th:value="#{text.cliente.clear}"
-								class="btn btn-md mt-4 reset" />
+						<div class="col-6 col-lg-2">
+							<button type="submit" th:text="#{text.cliente.clear}"
+								class="btn btn-md mt-4 reset"></button>
 						</div>
 					</div>
 

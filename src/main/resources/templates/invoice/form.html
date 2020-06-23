@@ -14,7 +14,7 @@
 			<div class="card-body d-flex justify-content-center">
 
 				<form th:action="@{/invoice/form/}" th:object="${invoice}"
-					method="post" class="col-10">
+					method="post" class="col-12 col-lg-10">
 
 					<a class="btn btn-link btn-sm my-2 align-self-center"
 						th:href="@{'/view/' + ${invoice.client.id}}">
@@ -63,20 +63,22 @@
 
 					<table th:replace="invoice/template-items :: itemsInvoice"></table>
 
-					<table id="loadItemProducts"
-						class="table table-sm table-striped table-hover shadow p-3 mb-5 rounded">
-						<thead class="black white-text">
-							<tr>
-								<th th:text="#{text.factura.form.item.nombre}">Nombre</th>
-								<th th:text="#{text.factura.form.item.precio}">Precio</th>
-								<th th:text="#{text.factura.form.item.cantidad}">Cantidad</th>
-								<th th:text="#{text.factura.form.item.total}">Total</th>
-								<th th:text="#{text.factura.form.item.eliminar}">Eliminar</th>
-							</tr>
-						</thead>
-						<tbody>
-						</tbody>
-					</table>
+					<div class="table-responsive">
+						<table id="loadItemProducts"
+							class="table table-sm table-striped table-hover shadow p-3 mb-5 rounded">
+							<thead class="black white-text">
+								<tr>
+									<th th:text="#{text.factura.form.item.nombre}">Nombre</th>
+									<th th:text="#{text.factura.form.item.precio}">Precio</th>
+									<th th:text="#{text.factura.form.item.cantidad}">Cantidad</th>
+									<th th:text="#{text.factura.form.item.total}">Total</th>
+									<th th:text="#{text.factura.form.item.eliminar}">Eliminar</th>
+								</tr>
+							</thead>
+							<tbody>
+							</tbody>
+						</table>
+					</div>
 
 					<h5 class="pb-3">
 						<span th:text="#{text.factura.form.total}">Total</span>
@@ -84,10 +86,10 @@
 					</h5>
 
 					<div class="form-group row">
-						<div class="col-sm-6">
+						<div class="col-sm-12 col-lg-6">
 							<input type="submit"
 								th:value="#{text.factura.form.boton.guardar}"
-								class="btn btn-primary btn-md btn-success" />
+								class="btn btn-primary btn-md btn-success btn-sm-block" />
 						</div>
 					</div>
 
@@ -98,7 +100,8 @@
 	</div>
 
 	<footer th:replace="layout/layout :: footer"></footer>
-	<input type="hidden" id="urlAjax" th:value="@{'/invoice/load-products'}" />
+	<input type="hidden" id="urlAjax"
+		th:value="@{'/invoice/load-products/'}" />
 	<script th:replace="invoice/js/autocomplete-products :: javascript"></script>
 
 </body>

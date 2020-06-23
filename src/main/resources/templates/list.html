@@ -12,77 +12,79 @@
 		<div class="card bg-white rounded">
 			<div class="card-header bg-dark text-white h3 pl-4"
 				th:text="${title}"></div>
-			<div class="card-body py-3 px-5">
-				<h4 class="card-title">
+			<div class="card-body">
+				<div class="card-title row justify-content-around align-items-center">
 					<a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/form}"
-						class="btn btn-success btn-xs mb-1">
+						class="col-lg-3 btn btn-sm-block btn-success mx-2 mb-4">
 						<i class="fas fa-user-plus mr-1"></i>
 						<span th:text="' ' + #{text.cliente.crear}"></span>
 					</a>
-					<a class="btn btn-outline-light-green btn-md float-right mx-2 mb-4"
+					<a class="col-lg-2 btn btn-sm-block btn-outline-light-green btn-md float-right mx-2 mb-4"
 						th:href="@{'/list'(format=xml)}">
 						<i class="fas fa-file-code mr-1"></i> XML
 					</a>
-					<a class="btn btn-outline-blue-grey btn-md float-right mx-2 mb-4"
+					<a class="col-lg-2 btn btn-sm-block btn-outline-blue-grey btn-md float-right mx-2 mb-4"
 						th:href="@{'/list'(format=csv)}">
 						<i class="fas fa-file-csv mr-1"></i> CSV
 					</a>
-					<a class="btn btn-outline-deep-orange btn-md float-right mx-2 mb-4"
+					<a class="col-lg-2 btn btn-sm-block btn-outline-deep-orange btn-md float-right mx-2 mb-4"
 						th:href="@{'/list'(format=json)}">
 						<i class="fas fa-file-code mr-1"></i> JSON
 					</a>
-				</h4>
-				<table
-					class="table table-striped table-bordered z-depth-1-half p-3 mb-4 bg-white rounded">
-					<thead class="thead-inverse">
-						<tr>
-							<th sec:authorize="hasRole('ROLE_USER')">id</th>
-							<th th:text="#{text.cliente.nombre}">first name</th>
-							<th th:text="#{text.cliente.apellido}">last name</th>
-							<th th:text="#{text.cliente.email}">email</th>
-							<th th:text="#{text.cliente.createAt}">date</th>
-							<th sec:authorize="hasRole('ROLE_ADMIN')"
-								th:text="#{text.factura.form.titulo}">create invoice</th>
-							<th sec:authorize="hasRole('ROLE_ADMIN')"
-								th:text="#{text.cliente.factura.detalle}">edit</th>
-							<th sec:authorize="hasRole('ROLE_ADMIN')"
-								th:text="#{text.cliente.factura.eliminar}">delete</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr th:each="client: ${clients}">
-							<td sec:authorize="hasRole('ROLE_USER')"><a
-									class="btn btn-primary btn-sm mibtn-sm"
-									th:href="@{/view/} + ${client.id}" th:text="${client.id}"></a></td>
-							<td th:text="${client.firstName}"></td>
-							<td th:text="${client.lastName}"></td>
-							<td th:text="${client.email}"></td>
-							<td th:text="${client.createAt}"></td>
-							<td sec:authorize="hasRole('ROLE_ADMIN')" class="text-center"><a
-									class="btn btn-indigo btn-md"
-									th:href="@{'/invoice/form/' + ${client.id}}">
-									<i class="fas fa-file-invoice-dollar mr-1"></i>
-									<span th:text="' ' + #{text.cliente.factura.crear}"></span>
-								</a></td>
-							<td sec:authorize="hasRole('ROLE_ADMIN')" class="text-center"><a
-									class="btn btn-warning btn-md"
-									th:href="@{/form/} + ${client.id}">
-									<i class="fas fa-user-edit mr-1"></i>
-									<span th:text="' ' + #{text.cliente.editar}"></span>
-								</a></td>
-							<td sec:authorize="hasRole('ROLE_ADMIN')" class="text-center"><a
-									class="btn btn-danger mibtn-md"
-									th:href="@{/delete/} + ${client.id}"
-									th:attr="onclick='return confirm(\'' + #{text.cliente.eliminarOk} + '\');'">
+				</div>
+				<div class="table-responsive">
+					<table
+						class="table table-striped table-bordered z-depth-1-half p-3 mb-4 bg-white rounded">
+						<thead class="thead-inverse">
+							<tr>
+								<th sec:authorize="hasRole('ROLE_USER')">id</th>
+								<th th:text="#{text.cliente.nombre}">first name</th>
+								<th th:text="#{text.cliente.apellido}">last name</th>
+								<th th:text="#{text.cliente.email}">email</th>
+								<th th:text="#{text.cliente.createAt}">date</th>
+								<th sec:authorize="hasRole('ROLE_ADMIN')"
+									th:text="#{text.factura.form.titulo}">create invoice</th>
+								<th sec:authorize="hasRole('ROLE_ADMIN')"
+									th:text="#{text.cliente.factura.detalle}">edit</th>
+								<th sec:authorize="hasRole('ROLE_ADMIN')"
+									th:text="#{text.cliente.factura.eliminar}">delete</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="client: ${clients}">
+								<td sec:authorize="hasRole('ROLE_USER')"><a
+										class="btn btn-primary btn-sm mibtn-sm"
+										th:href="@{/view/} + ${client.id}" th:text="${client.id}"></a></td>
+								<td th:text="${client.firstName}"></td>
+								<td th:text="${client.lastName}"></td>
+								<td th:text="${client.email}"></td>
+								<td th:text="${client.createAt}"></td>
+								<td sec:authorize="hasRole('ROLE_ADMIN')" class="text-center"><a
+										class="btn btn-indigo btn-md"
+										th:href="@{'/invoice/form/' + ${client.id}}">
+										<i class="fas fa-file-invoice-dollar mr-1"></i>
+										<span th:text="' ' + #{text.cliente.factura.crear}"></span>
+									</a></td>
+								<td sec:authorize="hasRole('ROLE_ADMIN')" class="text-center"><a
+										class="btn btn-warning btn-md"
+										th:href="@{/form/} + ${client.id}">
+										<i class="fas fa-user-edit mr-1"></i>
+										<span th:text="' ' + #{text.cliente.editar}"></span>
+									</a></td>
+								<td sec:authorize="hasRole('ROLE_ADMIN')" class="text-center"><a
+										class="btn btn-danger mibtn-md"
+										th:href="@{/delete/} + ${client.id}"
+										th:attr="onclick='return confirm(\'' + #{text.cliente.eliminarOk} + '\');'">
 
-									<i class="fas fa-times-circle trash-icon"></i>
+										<i class="fas fa-times-circle trash-icon"></i>
 
-								</a></td>
-						</tr>
-					</tbody>
-				</table>
+									</a></td>
+							</tr>
+						</tbody>
+					</table>
+					<nav th:replace="paginator-nav :: paginator"></nav>
+				</div>
 
-				<nav th:replace="paginator-nav :: paginator"></nav>
 
 			</div>
 		</div>

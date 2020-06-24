@@ -8,7 +8,7 @@ Technologies used: HTML, CSS, [Material Bootstrap](https://mdbootstrap.com/), JS
 ## How to access
 
 Heroku:
-[https://bit.ly/rt-invoice](https://bit.ly/rt-invoice)
+[https://bit.ly/rt-invoice-v3](https://bit.ly/rt-invoice-v3)
 
 * At first glance you have "no-user" role view.
 * You can create a User by Signing up (You'll have User-Role privileges)
@@ -16,7 +16,7 @@ Heroku:
   * u: admin
   * p: 12345
 
-* If Signing-up does not work try (User-Role privileges): 
+* If Signing-up as User does not work try (User-Role privileges): 
   * u: rodri
   * p: 12345
 

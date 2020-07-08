@@ -1,6 +1,6 @@
 # Invoice Management System
 
-designed for Desktop (not responsive yet).
+Main objective of this project was managing Customers and their Invoices. Developed all type of CRUD operations, learning Spring Framework and Java in the process also how Hibernate works and the use of Thymeleaf and JQuery.
 
 Technologies used: HTML, CSS, [Material Bootstrap](https://mdbootstrap.com/), JS, [Thymeleaf](https://www.thymeleaf.org/), [JQuery](https://jquery.com/), Java, [Springboot](https://spring.io/), [Hibernate](https://hibernate.org/), SQL.
 

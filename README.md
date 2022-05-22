@@ -7,7 +7,7 @@ Technologies used: HTML, CSS, [Material Bootstrap](https://mdbootstrap.com/), JS
 
 ## How to access
 
-Heroku:
+Demo Heroku:
 [https://bit.ly/rt-invoice-v3](https://bit.ly/rt-invoice-v3)
 
 * At first glance you have "no-user" role view.
